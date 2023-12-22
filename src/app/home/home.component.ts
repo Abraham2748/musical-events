@@ -6,12 +6,14 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { EventCardComponent } from './event-card/event-card.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     HeaderComponent,
+    EventCardComponent,
     FooterComponent,
     MatSelectModule,
     ReactiveFormsModule
