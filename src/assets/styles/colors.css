@@ -3,4 +3,27 @@
   --secondary-color: #292d39;
   --accent-color: #e91e63;
   --text-color: #566573;
+
+  /* Override material outlined text field colors */
+  --mdc-outlined-text-field-input-text-color: white;
+  --mdc-outlined-text-field-label-text-color: var(--primary-color);
+  --mdc-outlined-text-field-focus-label-text-color: var(--primary-color);
+  --mdc-outlined-text-field-outline-color: var(--primary-color);
+  --mdc-outlined-text-field-focus-outline-color: var(--primary-color);
+  --mdc-outlined-text-field-hover-outline-color: var(--primary-color);
+
+}
+
+/*  Override material raised button colors */
+.mat-mdc-raised-button:not(:disabled).mat-primary {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  font-weight: bold;
+}
+.mat-mdc-raised-button:not(:disabled).mat-secondary {
+  background-color: var(--secondary-color);
+  color: white;
+}
+.mat-mdc-raised-button:not(:disabled).mat-accent {
+  background-color: var(--accent-color);
 }

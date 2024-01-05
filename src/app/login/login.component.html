@@ -1,1 +1,43 @@
-<p>login works!</p>
+<div
+  style="
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100%;
+  "
+>
+  <app-header></app-header>
+
+  <div style="display: flex; justify-content: center;">
+    <div style="max-width: 1000px; width: 100%;">
+      <span style="font-size: 16px; font-weight: 500"
+        >Ingresa a Musical Events para comprar</span
+      >
+    </div>
+  </div>
+
+  <div
+    style="
+      display: flex;
+      min-height: 480px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    "
+  >
+    <div style="max-width: 1000px; width: 100%;">
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+        "
+      >
+      <app-login-form></app-login-form>
+      </div>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>
