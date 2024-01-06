@@ -1,10 +1,11 @@
-<header>
-  <div id="logo-container">
+<header class="box-shadow">
+  <div id="logo-container" routerLink="/home">
     <img id="logo" src="assets/images/logo.png" />
     <h1>MUSICAL EVENTS</h1>
   </div>
-  <app-search-bar></app-search-bar>
-  <div id="buttons">
+
+  <app-search-bar [ngClass]="{ hidden: showLogoOnly }"></app-search-bar>
+  <div id="buttons" [ngClass]="{ hidden: showLogoOnly }">
     <a id="ingresar" routerLink="/login">INGRESAR</a>
     <a id="registrarse" routerLink="/register">REGÍSTRATE</a>
   </div>
