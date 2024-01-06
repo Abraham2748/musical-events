@@ -1,21 +1,9 @@
-<div
-  style="
-    width: 300px;
-    height: 400px;
-    background-color: var(--secondary-color);
-    border-radius: 8px;
-  "
-  class="box-shadow"
->
-  <div style="width: 100%; padding-top: 48px; text-align: center">
-    <span
-      style="color: var(--primary-color); font-weight: 500; font-size: 16px"
-    >
-      INICIO DE SESIÓN
-    </span>
+<div class="main-container box-shadow">
+  <div class="form-container">
+    <span class="title"> INICIO DE SESIÓN </span>
 
-    <form style="margin-top: 20px">
-      <mat-form-field appearance="outline" style="width: 240px;">
+    <form>
+      <mat-form-field class="email" appearance="outline">
         <mat-label>Email</mat-label>
         <input type="email" matInput [formControl]="emailFormControl" />
         @if (emailFormControl.hasError('email') &&
@@ -25,35 +13,24 @@
         <mat-error>Email es <strong>requerido</strong></mat-error>
         }
       </mat-form-field>
-      <mat-form-field appearance="outline" style="width: 240px; margin-top: 8px;">
+      <mat-form-field class="password" appearance="outline">
         <mat-label>Contraseña</mat-label>
         <input type="password" matInput [formControl]="passwordFormControl" />
         @if (passwordFormControl.hasError('minlength') &&
         !passwordFormControl.hasError('required')) {
-        <mat-error style="line-height: 14px;">Contraseña debe tener al menos 8 dígitos</mat-error>
+        <mat-error class="minlength-error"
+          >Contraseña debe tener al menos 8 dígitos</mat-error
+        >
         } @if (passwordFormControl.hasError('required')) {
         <mat-error>Contraseña es <strong>requerida</strong></mat-error>
         }
       </mat-form-field>
-      <div style="margin-bottom: 12px; margin-top: 18px;">
-        <a
-          href="#"
-          style="
-            color: var(--accent-color);
-            text-decoration: none;
-            font-size: 12px;
-          "
-          >¿Olvidaste tu contraseña?</a
-        >
+      <div class="forgot-password">
+        <a href="#">¿Olvidaste tu contraseña?</a>
       </div>
       <button mat-raised-button color="primary">INGRESAR</button>
-      <div style="margin-top: 18px; font-size: 12px">
-        <span style="color: white"
-          >Si no tienes una cuenta
-          <a href="#" style="color: var(--accent-color); text-decoration: none"
-            >regístrate</a
-          ></span
-        >
+      <div class="register">
+        <span>Si no tienes una cuenta <a href="#">regístrate</a></span>
       </div>
     </form>
   </div>
