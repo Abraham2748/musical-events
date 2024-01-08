@@ -1,12 +1,10 @@
-import { Component } from '@angular/core';
-import { HeaderComponent } from '../shared/header/header.component';
-import { FooterComponent } from '../shared/footer/footer.component';
-import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { Component, OnInit } from '@angular/core';
+import { HeaderComponent } from '../shared/components/header/header.component';
+import { FooterComponent } from '../shared/components/footer/footer.component';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
 import { EventCardComponent } from './event-card/event-card.component';
+import { HomeService } from './home.service';
 
 @Component({
   selector: 'app-home',
@@ -16,11 +14,19 @@ import { EventCardComponent } from './event-card/event-card.component';
     EventCardComponent,
     FooterComponent,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent {
-  selected = new FormControl('');
+export class HomeComponent implements OnInit {
+  genreFormControl = new FormControl('');
+
+  constructor(private homeService: HomeService) {}
+
+  ngOnInit(): void {
+    this.homeService.getData().subscribe((data) => {
+      console.log(data);
+    });
+  }
 }
