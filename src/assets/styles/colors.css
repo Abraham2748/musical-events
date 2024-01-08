@@ -23,6 +23,7 @@
   --mdc-filled-text-field-container-color: var(--secondary-color);
   --mdc-filled-text-field-focus-label-text-color: var(--primary-color);
   --mdc-filled-text-field-label-text-color: var(--primary-color);
+  --mdc-filled-text-field-focus-active-indicator-color: var(--accent-color);
 
 }
 
