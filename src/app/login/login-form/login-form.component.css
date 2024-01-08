@@ -21,7 +21,7 @@
       & .password {
         width: 240px;
         margin-top: 8px;
-        & .minlength-error {
+        & .min-length-error {
           line-height: 14px;
         }
       }

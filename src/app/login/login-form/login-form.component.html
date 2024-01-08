@@ -18,7 +18,7 @@
         <input type="password" matInput [formControl]="passwordFormControl" />
         @if (passwordFormControl.hasError('minlength') &&
         !passwordFormControl.hasError('required')) {
-        <mat-error class="minlength-error"
+        <mat-error class="min-length-error"
           >Contraseña debe tener al menos 8 dígitos</mat-error
         >
         } @if (passwordFormControl.hasError('required')) {
