@@ -12,6 +12,18 @@
   --mdc-outlined-text-field-focus-outline-color: var(--primary-color);
   --mdc-outlined-text-field-hover-outline-color: var(--primary-color);
 
+  
+  /* Override material outlined select field colors */
+  --mat-select-enabled-trigger-text-color:  white;
+  --mat-option-label-text-color: var(--primary-color);
+  --mat-select-panel-background-color: var(--secondary-color);
+  --mat-option-selected-state-label-text-color: white;
+  --mat-select-enabled-arrow-color: var(--primary-color);
+  --mat-select-focused-arrow-color: white;
+  --mdc-filled-text-field-container-color: var(--secondary-color);
+  --mdc-filled-text-field-focus-label-text-color: var(--primary-color);
+  --mdc-filled-text-field-label-text-color: var(--primary-color);
+
 }
 
 /*  Override material raised button colors */
@@ -26,4 +38,9 @@
 }
 .mat-mdc-raised-button:not(:disabled).mat-accent {
   background-color: var(--accent-color);
+}
+
+/*  Override material select check icon color */
+.mat-pseudo-checkbox-minimal.mat-pseudo-checkbox-checked::after {
+  color: white !important;
 }
