@@ -3,6 +3,7 @@
   max-width: 1024px;
   margin-left: auto;
   margin-right: auto;
+  min-height: calc(100vh - 202px);
   & #header {
     display: flex;
     margin-top: 20px;
