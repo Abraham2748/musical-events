@@ -3,11 +3,12 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { Observable } from 'rxjs';
 import { HomeHeaderService } from './home-header.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home-header',
   standalone: true,
-  imports: [MatButtonModule, ReactiveFormsModule],
+  imports: [MatButtonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './home-header.component.html',
   styleUrl: './home-header.component.css',
 })
