@@ -47,13 +47,23 @@
     font-size: 14px;
     align-items: center;
     justify-content: space-between;
+    text-align: center;
+    & > * {
+      width: 200px;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
     & .description {
-      text-align: center;
       margin-top: 10px;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
     }
     & .place {
       font-weight: 500;
       margin-bottom: 10px;
+      -webkit-line-clamp: 1;
+      line-clamp: 1;
     }
   }
 }
