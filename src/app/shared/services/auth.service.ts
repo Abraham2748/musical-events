@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { LoginApiResponse } from '../models/auth.model';
 import { catchError, EMPTY } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -11,11 +12,14 @@ import { jwtDecode } from 'jwt-decode';
 export class AuthService {
   private baseUrl = environment.baseUrl;
   private http = inject(HttpClient);
+  private router = inject(Router);
 
   private email = '';
   private name = '';
   private role = '';
   private tokenExpiration = new Date();
+
+  private isLoggedIn = false;
 
   getEmail() {
     return this.email;
@@ -28,6 +32,9 @@ export class AuthService {
   }
   getTokenExpiration() {
     return this.tokenExpiration;
+  }
+  getIsLoggedIn() {
+    return this.isLoggedIn;
   }
 
   login(email: string, password: string) {
@@ -68,5 +75,17 @@ export class AuthService {
       jwtDecoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
 
     this.tokenExpiration = new Date(tokenExpiration);
+
+    this.isLoggedIn = true;
+  }
+
+  logout() {
+    localStorage.clear();
+    this.email = '';
+    this.name = '';
+    this.role = '';
+    this.isLoggedIn = false;
+    alert('Logout exitoso');
+    this.router.navigate(['/']);
   }
 }
