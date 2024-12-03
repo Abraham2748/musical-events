@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SimpleHeaderComponent } from '../shared/components/simple-header/simple-header.component';
 import { FooterComponent } from '../shared/components/footer/footer.component';
 import {
@@ -11,6 +11,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { RegisterRequestBody } from '../shared/models/auth.model';
+import { AuthService } from '../shared/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -28,6 +31,8 @@ import { MatSelectModule } from '@angular/material/select';
   styleUrl: './register.component.css',
 })
 export class RegisterComponent {
+  authService = inject(AuthService);
+  router = inject(Router);
   registerForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
@@ -40,4 +45,21 @@ export class RegisterComponent {
     documentType: new FormControl('', [Validators.required]),
     documentNumber: new FormControl('', [Validators.required]),
   });
+
+  register() {
+    const body: RegisterRequestBody = {
+      age: Number.parseInt(this.registerForm.controls.age.value!),
+      password: this.registerForm.controls.password.value!,
+      confirmPassword: this.registerForm.controls.password.value!,
+      documentType: this.registerForm.controls.documentType.value!,
+      documentNumber: this.registerForm.controls.documentNumber.value!,
+      email: this.registerForm.controls.email.value!,
+      firstName: this.registerForm.controls.name.value!,
+      lastName: this.registerForm.controls.lastName.value!,
+    };
+    this.authService.register(body).subscribe(() => {
+      alert('Registro exitoso');
+      this.router.navigate(['/login']);
+    });
+  }
 }

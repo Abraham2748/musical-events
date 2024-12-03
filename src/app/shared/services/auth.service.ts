@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { LoginApiResponse } from '../models/auth.model';
+import { LoginApiResponse, RegisterRequestBody } from '../models/auth.model';
 import { catchError, EMPTY } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
@@ -87,5 +87,14 @@ export class AuthService {
     this.isLoggedIn = false;
     alert('Logout exitoso');
     this.router.navigate(['/']);
+  }
+
+  register(body: RegisterRequestBody) {
+    return this.http.post(this.baseUrl + 'users/register', body).pipe(
+      catchError((error: HttpErrorResponse) => {
+        alert('Error: ' + error.error.errorMessage);
+        return EMPTY;
+      })
+    );
   }
 }

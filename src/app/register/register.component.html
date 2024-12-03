@@ -59,7 +59,14 @@
           <input matInput type="text" formControlName="documentNumber" />
           <mat-error>Nro Documento es requerido</mat-error>
         </mat-form-field>
-        <button mat-flat-button class="box-shadow">REGISTRAR</button>
+        <button
+          mat-flat-button
+          class="box-shadow"
+          [disabled]="registerForm.invalid"
+          (click)="register()"
+        >
+          REGISTRAR
+        </button>
         <div class="login">
           <span
             >Si tienes una cuenta <span class="text-link">ingresa</span></span
