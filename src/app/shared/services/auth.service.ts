@@ -1,7 +1,11 @@
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { LoginApiResponse, RegisterRequestBody } from '../models/auth.model';
+import {
+  LoginApiResponse,
+  RegisterRequestBody,
+  ResetPasswordRequestBody,
+} from '../models/auth.model';
 import { catchError, EMPTY } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
@@ -107,5 +111,14 @@ export class AuthService {
           return EMPTY;
         })
       );
+  }
+
+  resetPassword(body: ResetPasswordRequestBody) {
+    return this.http.post(this.baseUrl + 'users/ResetPassword', body).pipe(
+      catchError((error: HttpErrorResponse) => {
+        alert('Error: ' + error.error.errorMessage);
+        return EMPTY;
+      })
+    );
   }
 }

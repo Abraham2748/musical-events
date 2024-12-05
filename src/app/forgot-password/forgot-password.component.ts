@@ -33,7 +33,10 @@ export class ForgotPasswordComponent {
   sendToken(email: string) {
     this.authService.sendToken(email).subscribe(() => {
       alert('Token enviado');
-      this.matDialog.open(ResetPasswordDialogComponent);
+      this.matDialog.open(ResetPasswordDialogComponent, {
+        data: { email },
+        disableClose: true,
+      });
     });
   }
 }
