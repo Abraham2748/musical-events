@@ -59,8 +59,6 @@ export class AuthService {
 
     const jwtDecoded = jwtDecode<any>(token);
 
-    console.log(jwtDecoded);
-
     this.role =
       jwtDecoded[
         'http://schemas.microsoft.com/ws/2008/06/identity/claims/role'
@@ -96,5 +94,18 @@ export class AuthService {
         return EMPTY;
       })
     );
+  }
+
+  sendToken(email: string) {
+    return this.http
+      .post(this.baseUrl + 'users/RequestTokenToResetPassword', {
+        email,
+      })
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          alert('Error: ' + error.error.errorMessage);
+          return EMPTY;
+        })
+      );
   }
 }
