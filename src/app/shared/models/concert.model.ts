@@ -20,3 +20,9 @@ export interface GetConcertByIdResponse {
   success: boolean;
   errorMessage: string | null;
 }
+
+export interface BuyTicketsResponse {
+  data: number;
+  success: boolean;
+  errorMessage: string | null;
+}

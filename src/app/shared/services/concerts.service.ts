@@ -1,7 +1,10 @@
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { GetConcertByIdResponse } from '../models/concert.model';
+import {
+  BuyTicketsResponse,
+  GetConcertByIdResponse,
+} from '../models/concert.model';
 import { catchError, EMPTY } from 'rxjs';
 
 @Injectable({
@@ -14,6 +17,20 @@ export class ConcertsService {
   getConcertById(id: string) {
     return this.http
       .get<GetConcertByIdResponse>(this.baseUrl + 'concerts/' + id)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          alert('Error: ' + error.error.errorMessage);
+          return EMPTY;
+        })
+      );
+  }
+
+  buyTickets(eventId: string, quantity: number) {
+    return this.http
+      .post<BuyTicketsResponse>(this.baseUrl + 'sales', {
+        concertId: eventId,
+        ticketsQuantity: quantity,
+      })
       .pipe(
         catchError((error: HttpErrorResponse) => {
           alert('Error: ' + error.error.errorMessage);

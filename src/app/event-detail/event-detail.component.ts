@@ -53,6 +53,12 @@ export class EventDetailComponent implements OnInit {
       return;
     }
 
-    this.matDialog.open(BuyDialogComponent);
+    const buyDialogRef = this.matDialog.open(BuyDialogComponent, {
+      data: this.concert,
+    });
+
+    buyDialogRef.afterClosed().subscribe((saleId: number) => {
+      alert('Compra exitosa');
+    });
   }
 }
