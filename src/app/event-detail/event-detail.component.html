@@ -1,1 +1,34 @@
-<p>event-detail works!</p>
+<div class="page-container">
+  <app-logged-in-header></app-logged-in-header>
+  <div class="container">
+    <div class="title-container">
+      <span>Compra tus entradas y disfruta!</span>
+    </div>
+    <div class="content">
+      @if (concert) {
+      <app-event-card [data]="concert"></app-event-card>
+      <div class="panel-container box-shadow">
+        <div class="description">
+          <span class="about"> Acerca del evento</span>
+          <br /><br />
+          <p class="text">
+            {{ concert.extendedDescription | textLimiter : 700 }}
+          </p>
+        </div>
+        <div class="actions">
+          <span class="price"
+            >Precio:
+            <span class="value"
+              >S/ {{ concert.unitPrice.toFixed(2) }}</span
+            ></span
+          >
+          <button mat-flat-button color="primary" (click)="openBuyDialog()">
+            COMPRAR ENTRADA
+          </button>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

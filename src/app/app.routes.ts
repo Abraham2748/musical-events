@@ -17,4 +17,9 @@ export const routes: Routes = [
     path: 'event-detail',
     component: EventDetailComponent,
   },
+  {
+    path: 'event-detail/:id',
+    pathMatch: 'full',
+    component: EventDetailComponent,
+  },
 ];

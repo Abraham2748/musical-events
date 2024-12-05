@@ -13,6 +13,7 @@ import { Genre } from '../shared/models/genre.model';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { HomeHeaderService } from './home-header/home-header.service';
 import { HighlightableDirective } from '../shared/directives/highlightable.directive';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -25,6 +26,7 @@ import { HighlightableDirective } from '../shared/directives/highlightable.direc
     EventCardComponent,
     ReactiveFormsModule,
     HighlightableDirective,
+    RouterLink,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',

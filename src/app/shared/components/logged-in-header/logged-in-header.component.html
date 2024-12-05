@@ -6,7 +6,7 @@
     </div>
     @if(authService.getIsLoggedIn()){
     <div class="name-container">
-      <span>{{ authService.getName() + "-" + authService.getRole() }}</span>
+      <span>{{ authService.getName() + " - " + authService.getRole() }}</span>
     </div>
     <div class="buttons-container">
       <button mat-button class="primary" routerLink="/my-account">
