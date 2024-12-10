@@ -11,6 +11,7 @@ import { ConcertsService } from '../shared/services/concerts.service';
 import { TextLimiterPipe } from '../shared/pipes/text-limiter.pipe';
 import { MatButtonModule } from '@angular/material/button';
 import { BuyDialogComponent } from './buy-dialog/buy-dialog.component';
+import { VoucherDialogComponent } from '../shared/components/voucher-dialog/voucher-dialog.component';
 
 @Component({
   selector: 'app-event-detail',
@@ -42,6 +43,8 @@ export class EventDetailComponent implements OnInit {
   }
 
   openBuyDialog() {
+    this.matDialog.open(VoucherDialogComponent);
+    return;
     if (!this.authService.getIsLoggedIn()) {
       alert('Debes iniciar sesión para comprar boletos');
       this.router.navigate(['/login']);
