@@ -9,6 +9,7 @@ import {
 import { catchError, EMPTY } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
+import { NotificationsService } from 'angular2-notifications';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,7 @@ export class AuthService {
   private baseUrl = environment.baseUrl;
   private http = inject(HttpClient);
   private router = inject(Router);
+  private notifications = inject(NotificationsService);
 
   private email = '';
   private name = '';
@@ -42,17 +44,10 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    return this.http
-      .post<LoginApiResponse>(this.baseUrl + 'users/login', {
-        username: email,
-        password,
-      })
-      .pipe(
-        catchError((error: HttpErrorResponse) => {
-          alert('Error: ' + error.error.errorMessage);
-          return EMPTY;
-        })
-      );
+    return this.http.post<LoginApiResponse>(this.baseUrl + 'users/login', {
+      username: email,
+      password,
+    });
   }
 
   decodeToken() {
@@ -87,38 +82,21 @@ export class AuthService {
     this.name = '';
     this.role = '';
     this.isLoggedIn = false;
-    alert('Logout exitoso');
+    this.notifications.success('Logout exitoso', '¡Hasta luego!');
     this.router.navigate(['/']);
   }
 
   register(body: RegisterRequestBody) {
-    return this.http.post(this.baseUrl + 'users/register', body).pipe(
-      catchError((error: HttpErrorResponse) => {
-        alert('Error: ' + error.error.errorMessage);
-        return EMPTY;
-      })
-    );
+    return this.http.post(this.baseUrl + 'users/register', body);
   }
 
   sendToken(email: string) {
-    return this.http
-      .post(this.baseUrl + 'users/RequestTokenToResetPassword', {
-        email,
-      })
-      .pipe(
-        catchError((error: HttpErrorResponse) => {
-          alert('Error: ' + error.error.errorMessage);
-          return EMPTY;
-        })
-      );
+    return this.http.post(this.baseUrl + 'users/RequestTokenToResetPassword', {
+      email,
+    });
   }
 
   resetPassword(body: ResetPasswordRequestBody) {
-    return this.http.post(this.baseUrl + 'users/ResetPassword', body).pipe(
-      catchError((error: HttpErrorResponse) => {
-        alert('Error: ' + error.error.errorMessage);
-        return EMPTY;
-      })
-    );
+    return this.http.post(this.baseUrl + 'users/ResetPassword', body);
   }
 }

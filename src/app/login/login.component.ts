@@ -13,6 +13,7 @@ import {
 import { JsonPipe } from '@angular/common';
 import { AuthService } from '../shared/services/auth.service';
 import { Router, RouterLink } from '@angular/router';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-login',
@@ -39,6 +40,7 @@ export class LoginComponent {
       Validators.minLength(8),
     ]),
   });
+  notifications = inject(NotificationsService);
 
   login() {
     const email = this.loginForm.controls.email.value!;
@@ -48,7 +50,7 @@ export class LoginComponent {
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('tokenExpiration', response.data.expirationDate);
       this.authService.decodeToken();
-      alert('Login exitoso');
+      this.notifications.success('Inicio de sesión exitoso', '¡Bienvenido!');
       this.router.navigate(['/']);
     });
   }

@@ -12,6 +12,7 @@ import { TextLimiterPipe } from '../shared/pipes/text-limiter.pipe';
 import { MatButtonModule } from '@angular/material/button';
 import { BuyDialogComponent } from './buy-dialog/buy-dialog.component';
 import { VoucherDialogComponent } from '../shared/components/voucher-dialog/voucher-dialog.component';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-event-detail',
@@ -34,6 +35,7 @@ export class EventDetailComponent implements OnInit {
   eventId = '';
   activatedRoute = inject(ActivatedRoute);
   concertsService = inject(ConcertsService);
+  notifications = inject(NotificationsService);
 
   ngOnInit() {
     this.eventId = this.activatedRoute.snapshot.params['id'];
@@ -44,13 +46,19 @@ export class EventDetailComponent implements OnInit {
 
   openBuyDialog() {
     if (!this.authService.getIsLoggedIn()) {
-      alert('Debes iniciar sesión para comprar boletos');
+      this.notifications.warn(
+        'Inicia sesión',
+        'Debes iniciar sesión para comprar boletos'
+      );
       this.router.navigate(['/login']);
       return;
     }
 
     if (this.authService.getRole() === 'Administrator') {
-      alert('Los administradores no pueden comprar boletos');
+      this.notifications.warn(
+        'No permitido',
+        'Los administradores no pueden comprar boletos'
+      );
       return;
     }
 
@@ -59,7 +67,7 @@ export class EventDetailComponent implements OnInit {
     });
 
     buyDialogRef.afterClosed().subscribe((saleId: number) => {
-      alert('Compra exitosa');
+      this.notifications.success('Compra exitosa', '¡Disfruta el evento!');
       const voucherDialogRef = this.matDialog.open(VoucherDialogComponent, {
         data: { saleId },
       });

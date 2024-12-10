@@ -16,38 +16,19 @@ export class ConcertsService {
   private http = inject(HttpClient);
 
   getConcertById(id: string) {
-    return this.http
-      .get<GetConcertByIdResponse>(this.baseUrl + 'concerts/' + id)
-      .pipe(
-        catchError((error: HttpErrorResponse) => {
-          alert('Error: ' + error.error.errorMessage);
-          return EMPTY;
-        })
-      );
+    return this.http.get<GetConcertByIdResponse>(
+      this.baseUrl + 'concerts/' + id
+    );
   }
 
   buyTickets(eventId: string, quantity: number) {
-    return this.http
-      .post<BuyTicketsResponse>(this.baseUrl + 'sales', {
-        concertId: eventId,
-        ticketsQuantity: quantity,
-      })
-      .pipe(
-        catchError((error: HttpErrorResponse) => {
-          alert('Error: ' + error.error.errorMessage);
-          return EMPTY;
-        })
-      );
+    return this.http.post<BuyTicketsResponse>(this.baseUrl + 'sales', {
+      concertId: eventId,
+      ticketsQuantity: quantity,
+    });
   }
 
   getSale(saleId: number) {
-    return this.http
-      .get<SaleResponse>(this.baseUrl + 'sales/?id=' + saleId)
-      .pipe(
-        catchError((error: HttpErrorResponse) => {
-          alert('Error: ' + error.error.errorMessage);
-          return EMPTY;
-        })
-      );
+    return this.http.get<SaleResponse>(this.baseUrl + 'sales/?id=' + saleId);
   }
 }
