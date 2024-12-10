@@ -3,11 +3,12 @@ import { RouterOutlet } from '@angular/router';
 import { AuthService } from './shared/services/auth.service';
 import { NgxConfettiExplosionComponent } from 'ngx-confetti-explosion';
 import { Options, SimpleNotificationsModule } from 'angular2-notifications';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, SimpleNotificationsModule],
+  imports: [RouterOutlet, SimpleNotificationsModule, NgxSpinnerModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

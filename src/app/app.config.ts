@@ -11,9 +11,11 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import {
   errorInterceptor,
   jwtInterceptor,
+  loadingInterceptor,
   tokenExpiredInterceptor,
 } from './app.interceptor';
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,8 +27,9 @@ export const appConfig: ApplicationConfig = {
         errorInterceptor,
         jwtInterceptor,
         tokenExpiredInterceptor,
+        loadingInterceptor,
       ])
     ),
-    importProvidersFrom(SimpleNotificationsModule.forRoot()),
+    importProvidersFrom(SimpleNotificationsModule.forRoot(), NgxSpinnerModule),
   ],
 };
