@@ -17,19 +17,18 @@ import { Router } from '@angular/router';
 import { NotificationsService } from 'angular2-notifications';
 
 @Component({
-  selector: 'app-register',
-  standalone: true,
-  imports: [
-    SimpleHeaderComponent,
-    FooterComponent,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    ReactiveFormsModule,
-    MatSelectModule,
-  ],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.css',
+    selector: 'app-register',
+    imports: [
+        SimpleHeaderComponent,
+        FooterComponent,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        ReactiveFormsModule,
+        MatSelectModule,
+    ],
+    templateUrl: './register.component.html',
+    styleUrl: './register.component.css'
 })
 export class RegisterComponent {
   authService = inject(AuthService);

@@ -16,20 +16,19 @@ import { HighlightableDirective } from '../shared/directives/highlightable.direc
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [
-    HomeHeaderComponent,
-    FooterComponent,
-    MatFormFieldModule,
-    MatSelectModule,
-    EventCardComponent,
-    ReactiveFormsModule,
-    HighlightableDirective,
-    RouterLink,
-  ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
+    selector: 'app-home',
+    imports: [
+        HomeHeaderComponent,
+        FooterComponent,
+        MatFormFieldModule,
+        MatSelectModule,
+        EventCardComponent,
+        ReactiveFormsModule,
+        HighlightableDirective,
+        RouterLink,
+    ],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
   concerts: Concert[] = [];

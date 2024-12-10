@@ -8,11 +8,10 @@ import { MatFormField } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 @Component({
-  selector: 'app-buy-dialog',
-  standalone: true,
-  imports: [FormsModule, MatButtonModule, MatFormField, MatInputModule],
-  templateUrl: './buy-dialog.component.html',
-  styleUrl: './buy-dialog.component.css',
+    selector: 'app-buy-dialog',
+    imports: [FormsModule, MatButtonModule, MatFormField, MatInputModule],
+    templateUrl: './buy-dialog.component.html',
+    styleUrl: './buy-dialog.component.css'
 })
 export class BuyDialogComponent {
   data = inject(MAT_DIALOG_DATA) as Concert;

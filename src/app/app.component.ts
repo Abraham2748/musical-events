@@ -6,11 +6,10 @@ import { Options, SimpleNotificationsModule } from 'angular2-notifications';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, SimpleNotificationsModule, NgxSpinnerModule],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+    selector: 'app-root',
+    imports: [RouterOutlet, SimpleNotificationsModule, NgxSpinnerModule],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css'
 })
 export class AppComponent {
   authService = inject(AuthService);
