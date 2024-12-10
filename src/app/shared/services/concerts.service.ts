@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import {
   BuyTicketsResponse,
   GetConcertByIdResponse,
+  SaleResponse,
 } from '../models/concert.model';
 import { catchError, EMPTY } from 'rxjs';
 
@@ -31,6 +32,17 @@ export class ConcertsService {
         concertId: eventId,
         ticketsQuantity: quantity,
       })
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          alert('Error: ' + error.error.errorMessage);
+          return EMPTY;
+        })
+      );
+  }
+
+  getSale(saleId: number) {
+    return this.http
+      .get<SaleResponse>(this.baseUrl + 'sales/?id=' + saleId)
       .pipe(
         catchError((error: HttpErrorResponse) => {
           alert('Error: ' + error.error.errorMessage);

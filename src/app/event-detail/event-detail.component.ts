@@ -43,8 +43,6 @@ export class EventDetailComponent implements OnInit {
   }
 
   openBuyDialog() {
-    this.matDialog.open(VoucherDialogComponent);
-    return;
     if (!this.authService.getIsLoggedIn()) {
       alert('Debes iniciar sesión para comprar boletos');
       this.router.navigate(['/login']);
@@ -62,6 +60,12 @@ export class EventDetailComponent implements OnInit {
 
     buyDialogRef.afterClosed().subscribe((saleId: number) => {
       alert('Compra exitosa');
+      const voucherDialogRef = this.matDialog.open(VoucherDialogComponent, {
+        data: { saleId },
+      });
+      voucherDialogRef.afterClosed().subscribe(() => {
+        this.router.navigate(['/']);
+      });
     });
   }
 }
