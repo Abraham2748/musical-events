@@ -6,6 +6,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { EventDetailComponent } from './event-detail/event-detail.component';
 import { AdminComponent } from './admin/admin.component';
 import { CustomerComponent } from './customer/customer.component';
+import { MyPurchasesComponent } from './customer/my-purchases/my-purchases.component';
+import { ChangePasswordComponent } from './customer/change-password/change-password.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -28,5 +30,24 @@ export const routes: Routes = [
     path: 'admin',
     component: AdminComponent,
   },
-  { path: 'customer', component: CustomerComponent },
+  {
+    path: 'customer',
+    pathMatch: 'prefix',
+    component: CustomerComponent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'my-purchases',
+      },
+      {
+        path: 'my-purchases',
+        component: MyPurchasesComponent,
+      },
+      {
+        path: 'change-password',
+        component: ChangePasswordComponent,
+      },
+    ],
+  },
 ];
