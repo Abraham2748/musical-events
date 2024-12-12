@@ -93,6 +93,15 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "configurations": {
+            "production": {
+              "baseHref": "https://abraham2748.github.io/musical-events/",
+              "repo": "https://github.com/Abraham2748/musical-events"
+            }
+          }
         }
       }
     }
