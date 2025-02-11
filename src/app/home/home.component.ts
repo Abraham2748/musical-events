@@ -1,37 +1,75 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { HomeHeaderComponent } from './home-header/home-header.component';
 import { FooterComponent } from '../shared/components/footer/footer.component';
 import { EventCardComponent } from '../shared/components/event-card/event-card.component';
 import { Concert } from '../shared/models/concert.model';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { Genre } from '../shared/models/genre.model';
+import { HomeService } from './home.service';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
-  imports: [HomeHeaderComponent, FooterComponent, EventCardComponent],
+  imports: [
+    HomeHeaderComponent,
+    FooterComponent,
+    EventCardComponent,
+    MatSelectModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent {
-  onSearchValueChange(value: string) {
-    console.log('new value: ', value);
+export class HomeComponent implements OnInit {
+  concerts: Concert[] = [];
+  genres: Genre[] = [];
+  initialConcerts: Concert[] = [];
+  homeService = inject(HomeService);
+  currentGenre = new FormControl(0);
+  searchGenreValue = 0;
+  searchBarValue = '';
+
+  ngOnInit(): void {
+    this.homeService.getData().subscribe((response) => {
+      this.initialConcerts = response.concerts;
+      this.genres = response.genres;
+      this.concerts = this.initialConcerts;
+    });
+
+    this.currentGenre.valueChanges.subscribe((value) => {
+      this.searchGenreValue = value || 0;
+      this.filterConcerts();
+    });
   }
 
-  temporalData: Concert = {
-    id: 1,
-    title: ' AC/DC Rock the world tour',
-    description:
-      ' AC/DC vuelve al escenario con un nuevo tour, no te lo pierdas, una gira que promete ser una de las más épicas.',
-    extendedDescription:
-      'AC/DC está de regreso con su electrizante Rock the World Tour, una gira que promete ser una de las más épicas en la historia del rock. Después de una pausa que parecía interminable para sus fans, la banda australiana vuelve con más energía que nunca, trayendo de vuelta todos los himnos que han definido su carrera y la historia del rock duro. Con más de 40 años sobre los escenarios, AC/DC sigue siendo una fuerza imparable, y esta gira mundial es la oportunidad perfecta para presenciar su inigualable potencia en vivo. Desde los acordes iniciales de "Back in Black" hasta los estruendosos coros de "Highway to Hell", el setlist estará lleno de clásicos inmortales que harán temblar cada rincón del estadio. La producción de este tour no dejará a nadie indiferente: pirotecnia, efectos de luces y un escenario monumental que llevará la experiencia del concierto a un nivel completamente nuevo.\n\nEste concierto no es solo un evento, es una celebración de la leyenda de AC/DC, una banda que ha roto fronteras y generaciones con su sonido único y su espíritu rebelde. Brian Johnson y Angus Young, junto con el resto de la banda, prometen ofrecer un show lleno de energía cruda, guitarras estridentes y la actitud desenfrenada que siempre los ha caracterizado. Prepárate para una noche de rock en su estado más puro, donde cada riff y cada grito te recordarán por qué AC/DC sigue siendo un referente indiscutible del género. No te pierdas esta oportunidad única de ver a una de las bandas más grandes del rock en acción, porque noches como esta son verdaderamente irrepetibles.',
-    place: ' Estadio San Marcos En Lima Peru 2025 America Planeta Tierra ',
-    unitPrice: 175.0,
-    genreId: 1,
-    genre: 'Rock',
-    dateEvent: '12/15/2024',
-    timeEvent: '19:00',
-    imageUrl:
-      'http://localhost:8080/concerts/2b763a29-e54a-448f-9326-baa598350c73.jpg',
-    ticketsQuantity: 85,
-    finalized: false,
-    status: 'Activo',
-  };
+  onSearchValueChange(value: string) {
+    this.searchBarValue = value;
+    this.filterConcerts();
+  }
+
+  filterConcerts() {
+    this.filterByGenre();
+    this.filterByDescription();
+  }
+
+  filterByGenre() {
+    if (this.searchGenreValue === 0) {
+      this.concerts = this.initialConcerts;
+    } else {
+      this.concerts = this.initialConcerts.filter(
+        (concert) => concert.genreId === this.searchGenreValue
+      );
+    }
+  }
+  filterByDescription() {
+    if (this.searchBarValue) {
+      this.concerts = this.concerts.filter((concert) =>
+        concert.description
+          .toLowerCase()
+          .includes(this.searchBarValue.toLowerCase())
+      );
+    }
+  }
 }
