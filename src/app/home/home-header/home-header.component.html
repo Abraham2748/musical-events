@@ -11,11 +11,25 @@
         [formControl]="searchBarFormControl"
       />
     </div>
+    @if(authService.getIsLoggedIn()){
+    <div class="buttons-container">
+      <button mat-button class="login" routerLink="/login">MENU</button>
+      <button
+        mat-button
+        class="register"
+        routerLink="/register"
+        (click)="authService.logout()"
+      >
+        CERRAR SESIÓN
+      </button>
+    </div>
+    } @else {
     <div class="buttons-container">
       <button mat-button class="login" routerLink="/login">INGRESAR</button>
       <button mat-button class="register" routerLink="/register">
         REGÍSTRATE
       </button>
     </div>
+    }
   </div>
 </header>
