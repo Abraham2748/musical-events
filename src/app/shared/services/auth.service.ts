@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { LoginApiResponse } from '../models/auth.model';
+import { LoginApiResponse, RegisterRequestBody } from '../models/auth.model';
 import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
@@ -38,6 +38,10 @@ export class AuthService {
       username: email,
       password,
     });
+  }
+
+  register(body: RegisterRequestBody) {
+    return this.http.post(this.baseUrl + 'users/register', body);
   }
 
   decodeToken() {

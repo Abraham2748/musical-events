@@ -39,10 +39,12 @@ header {
       display: flex;
       justify-content: center;
       gap: 10px;
-      & .login {
+      & .login,
+      .menu {
         color: var(--primary-color);
       }
-      & .register {
+      & .register,
+      .logout {
         color: var(--accent-color);
       }
     }
