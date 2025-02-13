@@ -18,7 +18,7 @@
     </div>
     <div class="event-list">
       @for (item of concerts; track $index) {
-      <app-event-card [data]="item"></app-event-card>
+      <app-event-card appHighlightable [data]="item"></app-event-card>
       }
     </div>
   </div>

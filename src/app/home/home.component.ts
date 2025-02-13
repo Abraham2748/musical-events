@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { Genre } from '../shared/models/genre.model';
 import { HomeService } from './home.service';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { HighlightableDirective } from '../shared/directives/highlightable.directive';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +19,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
     MatSelectModule,
     MatFormFieldModule,
     ReactiveFormsModule,
+    HighlightableDirective,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
