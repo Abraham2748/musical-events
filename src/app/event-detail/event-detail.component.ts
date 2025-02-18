@@ -9,6 +9,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ConcertsService } from '../shared/services/concerts.service';
 import { BuyDialogComponent } from './buy-dialog/buy-dialog.component';
+import { VoucherDialogComponent } from '../shared/components/voucher-dialog/voucher-dialog.component';
+import confetti from 'canvas-confetti';
 
 @Component({
   selector: 'app-event-detail',
@@ -54,6 +56,15 @@ export class EventDetailComponent implements OnInit {
 
     buyDialogRef.afterClosed().subscribe((saleId) => {
       alert('Compra exitosa');
+      confetti({
+        zIndex: 1001,
+      });
+      const voucherDialogRef = this.matDialog.open(VoucherDialogComponent, {
+        data: { saleId },
+      });
+      voucherDialogRef.afterClosed().subscribe(() => {
+        this.router.navigate(['/']);
+      });
     });
   }
 }
