@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-logged-in-header',
-  imports: [RouterLink, MatButtonModule],
+  imports: [RouterLink, MatButtonModule, RouterLink],
   templateUrl: './logged-in-header.component.html',
   styleUrl: './logged-in-header.component.css',
 })
