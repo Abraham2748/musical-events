@@ -8,6 +8,7 @@ import { AuthService } from '../shared/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ConcertsService } from '../shared/services/concerts.service';
+import { BuyDialogComponent } from './buy-dialog/buy-dialog.component';
 
 @Component({
   selector: 'app-event-detail',
@@ -46,5 +47,13 @@ export class EventDetailComponent implements OnInit {
       alert('Los administradores no pueden comprar boletos');
       return;
     }
+
+    const buyDialogRef = this.matDialog.open(BuyDialogComponent, {
+      data: this.concert,
+    });
+
+    buyDialogRef.afterClosed().subscribe((saleId) => {
+      alert('Compra exitosa');
+    });
   }
 }
