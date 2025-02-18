@@ -80,4 +80,10 @@ export class AuthService {
       alert('Logout exitoso');
     }
   }
+
+  sendTokenToResetPassword(email: string) {
+    return this.http.post(this.baseUrl + 'users/RequestTokenToResetPassword', {
+      email,
+    });
+  }
 }
