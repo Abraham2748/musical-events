@@ -8,8 +8,13 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { jwtInterceptor, tokenExpiredInterceptor } from './app.interceptor';
+import {
+  jwtInterceptor,
+  loadingInterceptor,
+  tokenExpiredInterceptor,
+} from './app.interceptor';
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,8 +22,12 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimationsAsync(),
     provideHttpClient(
-      withInterceptors([tokenExpiredInterceptor, jwtInterceptor])
+      withInterceptors([
+        tokenExpiredInterceptor,
+        jwtInterceptor,
+        loadingInterceptor,
+      ])
     ),
-    importProvidersFrom(SimpleNotificationsModule.forRoot()),
+    importProvidersFrom(SimpleNotificationsModule.forRoot(), NgxSpinnerModule),
   ],
 };
