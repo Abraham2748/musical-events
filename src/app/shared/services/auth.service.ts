@@ -7,6 +7,7 @@ import {
 } from '../models/auth.model';
 import { jwtDecode } from 'jwt-decode';
 import { NotificationsService } from 'angular2-notifications';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -22,6 +23,7 @@ export class AuthService {
 
   private isLoggedIn = false;
   notifications = inject(NotificationsService);
+  router = inject(Router);
 
   getEmail() {
     return this.email;
@@ -85,6 +87,7 @@ export class AuthService {
     } else {
       this.notifications.info('Logout', 'Logout exitoso');
     }
+    this.router.navigateByUrl('/');
   }
 
   sendTokenToResetPassword(email: string) {

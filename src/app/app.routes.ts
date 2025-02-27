@@ -7,6 +7,7 @@ import { EventDetailComponent } from './event-detail/event-detail.component';
 import { CustomerComponent } from './customer/customer.component';
 import { MyPurchasesComponent } from './customer/my-purchases/my-purchases.component';
 import { ChangePasswordComponent } from './customer/change-password/change-password.component';
+import { isCustomer, isLoggedIn } from './shared/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -39,6 +40,7 @@ export const routes: Routes = [
     path: 'customer',
     pathMatch: 'prefix',
     component: CustomerComponent,
+    canActivate: [isLoggedIn, isCustomer],
     children: [
       {
         path: '',
