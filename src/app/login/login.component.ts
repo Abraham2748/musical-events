@@ -14,6 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../shared/services/auth.service';
 import { catchError, EMPTY } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-login',
@@ -39,6 +40,7 @@ export class LoginComponent {
       Validators.minLength(8),
     ]),
   });
+  notifications = inject(NotificationsService);
 
   login() {
     const email: string = this.loginForm.controls.email.value!;
@@ -48,7 +50,7 @@ export class LoginComponent {
       .login(email, password)
       .pipe(
         catchError((res: HttpErrorResponse) => {
-          alert(res.error.errorMessage);
+          this.notifications.error('Error', res.error.errorMessage);
           return EMPTY;
         })
       )
@@ -56,7 +58,7 @@ export class LoginComponent {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('tokenExpiration', response.data.expirationDate);
         this.authService.decodeToken();
-        alert('Login exitoso');
+        this.notifications.success('Login exitoso', 'Bienvenido');
         this.router.navigate(['/']);
       });
   }

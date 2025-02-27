@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../shared/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ResetPasswordDialogComponent } from './reset-password-dialog/reset-password-dialog.component';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-forgot-password',
@@ -27,10 +28,11 @@ import { ResetPasswordDialogComponent } from './reset-password-dialog/reset-pass
 export class ForgotPasswordComponent {
   authService = inject(AuthService);
   matDialog = inject(MatDialog);
+  notifications = inject(NotificationsService);
 
   sendToken(email: string) {
     this.authService.sendTokenToResetPassword(email).subscribe(() => {
-      alert('Token enviado');
+      this.notifications.success('Token enviado', 'Revisa tu correo');
       this.matDialog.open(ResetPasswordDialogComponent, {
         data: { email },
         disableClose: true,

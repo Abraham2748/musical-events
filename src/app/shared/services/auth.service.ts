@@ -6,6 +6,7 @@ import {
   ResetPasswordRequestBody,
 } from '../models/auth.model';
 import { jwtDecode } from 'jwt-decode';
+import { NotificationsService } from 'angular2-notifications';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,7 @@ export class AuthService {
   private tokenExpiration = new Date();
 
   private isLoggedIn = false;
+  notifications = inject(NotificationsService);
 
   getEmail() {
     return this.email;
@@ -79,9 +81,9 @@ export class AuthService {
     this.tokenExpiration = new Date();
     this.isLoggedIn = false;
     if (tokenExpired) {
-      alert('Token Expirado');
+      this.notifications.error('Token Expirado', 'Por favor inicia sesión');
     } else {
-      alert('Logout exitoso');
+      this.notifications.info('Logout', 'Logout exitoso');
     }
   }
 

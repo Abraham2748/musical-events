@@ -16,6 +16,7 @@ import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { catchError, EMPTY } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-register',
@@ -46,6 +47,7 @@ export class RegisterComponent {
     documentType: new FormControl('', [Validators.required]),
     documentNumber: new FormControl('', [Validators.required]),
   });
+  notifications = inject(NotificationsService);
 
   register() {
     const body: RegisterRequestBody = {
@@ -62,12 +64,12 @@ export class RegisterComponent {
       .register(body)
       .pipe(
         catchError((res: HttpErrorResponse) => {
-          alert(res.error.errorMessage);
+          this.notifications.error('Error', res.error.errorMessage);
           return EMPTY;
         })
       )
       .subscribe((response) => {
-        alert('Registro exitoso');
+        this.notifications.success('Registro exitoso', 'Inicia sesión');
         this.router.navigate(['/']);
       });
   }
