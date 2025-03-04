@@ -8,6 +8,11 @@ import { CustomerComponent } from './customer/customer.component';
 import { MyPurchasesComponent } from './customer/my-purchases/my-purchases.component';
 import { ChangePasswordComponent } from './customer/change-password/change-password.component';
 import { isCustomer, isLoggedIn } from './shared/guards/auth.guard';
+import { AdminComponent } from './admin/admin.component';
+import { SalesComponent } from './admin/sales/sales.component';
+import { EventsComponent } from './admin/events/events.component';
+import { GenresComponent } from './admin/genres/genres.component';
+import { ReportsComponent } from './admin/reports/reports.component';
 
 export const routes: Routes = [
   {
@@ -55,6 +60,25 @@ export const routes: Routes = [
         path: 'change-password',
         component: ChangePasswordComponent,
       },
+    ],
+  },
+  {
+    path: 'admin',
+    pathMatch: 'prefix',
+    component: AdminComponent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'sales',
+      },
+      {
+        path: 'sales',
+        component: SalesComponent,
+      },
+      { path: 'events', component: EventsComponent },
+      { path: 'genres', component: GenresComponent },
+      { path: 'reports', component: ReportsComponent },
     ],
   },
 ];
