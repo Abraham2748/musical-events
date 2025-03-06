@@ -33,7 +33,7 @@
           },
           "configurations": {
             "production": {
-              "baseHref": "https://abraham2748.github.io/musical-events/",
+              "baseHref": "https://abraham2748.online/",
               "budgets": [
                 {
                   "type": "initial",
