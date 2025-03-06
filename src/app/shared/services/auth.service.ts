@@ -8,12 +8,13 @@ import {
 import { jwtDecode } from 'jwt-decode';
 import { NotificationsService } from 'angular2-notifications';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:8080/api/';
+  private baseUrl = environment.baseUrl;
   private http = inject(HttpClient);
 
   private email = '';

@@ -5,12 +5,13 @@ import {
   GetConcertByIdResponse,
   GetSaleByIdResponse,
 } from '../models/concert.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ConcertsService {
-  private baseUrl = 'http://localhost:8080/api/';
+  private baseUrl = environment.baseUrl;
   private http = inject(HttpClient);
 
   getConcertById(id: string) {

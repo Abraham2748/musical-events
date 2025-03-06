@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { SaleApiResponse } from './sale.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SalesService {
   private http = inject(HttpClient);
-  private baseUrl = 'http://localhost:8080/api/';
+  private baseUrl = environment.baseUrl;
 
   getSales(dateStart: Date, dateEnd: Date, page = 1, recordsPerPage = 999) {
     //format dateStart and dateEnd to mm-dd-yyyy

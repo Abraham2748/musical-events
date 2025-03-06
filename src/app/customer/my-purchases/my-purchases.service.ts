@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { MyPurchasesApiResponse } from './my-purchases.model';
+import { environment } from '../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MyPurchasesService {
-  private baseUrl = 'http://localhost:8080/api/';
+  private baseUrl = environment.baseUrl;
   private http = inject(HttpClient);
 
   getMyPurchases(email: string, title = '', page = 1, recordsPerPage = 999) {
