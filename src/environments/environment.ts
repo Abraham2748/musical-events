@@ -1,3 +1,3 @@
 export const environment = {
-  baseUrl: 'http://api.musical-events.com/',
+  baseUrl: 'http://localhost:8080/api/',
 };
