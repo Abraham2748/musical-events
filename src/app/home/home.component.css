@@ -25,6 +25,7 @@
 
       & app-event-card {
         cursor: pointer;
+        border-radius: 8px;
       }
     }
   }

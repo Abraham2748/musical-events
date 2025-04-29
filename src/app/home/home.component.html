@@ -1,27 +1,27 @@
 <div class="page-container">
-  <app-home-header></app-home-header>
+  <app-home-header
+    (searchValueChange)="onSearchBarValueChange($event)"
+  ></app-home-header>
 
   <div class="content-container">
     <div class="filter">
       <mat-form-field>
         <mat-label>Género</mat-label>
-        <mat-select>
-          <mat-option value="01">Balada</mat-option>
-          <mat-option value="01">Cumbia</mat-option>
-          <mat-option value="01">Opera</mat-option>
+        <mat-select [formControl]="currentGenre">
+          <mat-option [value]="0">Todos</mat-option>
+          @for (genre of genres; track $index) {
+          <mat-option [value]="genre.id">{{ genre.name }}</mat-option>
+          }
         </mat-select>
       </mat-form-field>
-      <span>Selecciona tu genero musical favorito</span>
+      <span appHighlightable>Selecciona tu genero musical favorito</span>
     </div>
     <div class="event-list">
-      <app-event-card [data]="concertTest"></app-event-card>
-      <app-event-card [data]="concertTest"></app-event-card>
-      <app-event-card [data]="concertTest"></app-event-card>
-      <app-event-card [data]="concertTest"></app-event-card>
-      <app-event-card [data]="concertTest"></app-event-card>
-      <app-event-card [data]="concertTest"></app-event-card>
-      <app-event-card [data]="concertTest"></app-event-card>
-      <app-event-card [data]="concertTest"></app-event-card>
+      @for (concert of concerts; track $index) {
+      <app-event-card appHighlightable [data]="concert"></app-event-card>
+      } @empty {
+      <h2>No encontramos conciertos :c</h2>
+      }
     </div>
   </div>
 
