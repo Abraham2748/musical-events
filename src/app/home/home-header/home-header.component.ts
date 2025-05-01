@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-home-header',
@@ -9,6 +10,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './home-header.component.css',
 })
 export class HomeHeaderComponent {
+  authService = inject(AuthService);
   @Output() searchValueChange = new EventEmitter<string>();
 
   onInput(searchValue: Event) {

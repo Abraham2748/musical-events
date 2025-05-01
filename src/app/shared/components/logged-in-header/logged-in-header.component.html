@@ -1,22 +1,16 @@
 <header>
   <div class="container">
-    <div class="logo-container">
+    <div class="logo-container" routerLink="/">
       <img src="images/logo.png" alt="logo" />
       <h1>MUSICAL EVENTS</h1>
     </div>
-    <div class="search-container">
-      <input type="text" placeholder="Buscar..." (input)="onInput($event)" />
+    @if (authService.getIsLoggedIn()) {
+    <div class="name-container">
+      <span>{{ authService.getName() + " - " + authService.getRole() }}</span>
     </div>
-    @if(authService.getIsLoggedIn()){
     <div class="buttons-container">
-      <button
-        mat-button
-        class="primary"
-        [routerLink]="
-          authService.getRole() === 'Administrator' ? '/admin' : '/customer'
-        "
-      >
-        MENU
+      <button mat-button class="primary" routerLink="/my-account">
+        MI CUENTA
       </button>
       <button mat-button class="accent" (click)="authService.logout()">
         CERRAR SESIÓN
