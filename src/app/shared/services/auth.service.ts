@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { LoginApiResponse } from '../models/auth.model';
+import { LoginApiResponse, RegisterRequestBody } from '../models/auth.model';
 import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
 
@@ -42,6 +42,10 @@ export class AuthService {
       username: email,
       password: password,
     });
+  }
+
+  register(body: RegisterRequestBody) {
+    return this.http.post(this.baseUrl + 'users/register', body);
   }
 
   decodeToken() {
