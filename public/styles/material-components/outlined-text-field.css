@@ -7,6 +7,7 @@
   --mdc-outlined-text-field-hover-outline-color: var(--primary-color);
   --mdc-outlined-text-field-hover-label-text-color: white;
   --mdc-outlined-text-field-disabled-input-text-color: gray;
+  --mdc-outlined-text-field-disabled-label-text-color: gray;
   /* caret color primary */
   --mdc-outlined-text-field-caret-color: var(--primary-color);
 }

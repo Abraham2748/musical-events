@@ -1,7 +1,11 @@
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { LoginApiResponse, RegisterRequestBody } from '../models/auth.model';
+import {
+  LoginApiResponse,
+  RegisterRequestBody,
+  ResetPasswordRequestBody,
+} from '../models/auth.model';
 import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
 
@@ -88,5 +92,15 @@ export class AuthService {
       alert('Logout exitoso. Vuelve pronto.');
       this.router.navigateByUrl('/');
     }
+  }
+
+  sendTokenToResetPassword(email: string) {
+    return this.http.post(this.baseUrl + 'users/RequestTokenToResetPassword', {
+      email,
+    });
+  }
+
+  resetPassword(body: ResetPasswordRequestBody) {
+    return this.http.post(this.baseUrl + 'users/ResetPassword', body);
   }
 }
