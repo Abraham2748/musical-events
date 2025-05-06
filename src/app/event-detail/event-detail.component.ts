@@ -8,6 +8,9 @@ import { AuthService } from '../shared/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ConcertsService } from '../shared/services/concerts.service';
+import { BuyDialogComponent } from './buy-dialog/buy-dialog.component';
+import { HttpErrorResponse } from '@angular/common/http';
+import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-event-detail',
@@ -31,10 +34,40 @@ export class EventDetailComponent implements OnInit {
 
   ngOnInit() {
     this.eventId = this.activatedRouter.snapshot.params['id'];
-    this.concertsService.getConcertById(this.eventId).subscribe((res) => {
-      this.concert = res.data;
-    });
+    this.concertsService
+      .getConcertById(this.eventId)
+      .pipe(
+        catchError((err: HttpErrorResponse) => {
+          console.log('error: ', err);
+          alert(err.error.errorMessage);
+          return of();
+        })
+      )
+      .subscribe((res) => {
+        this.concert = res.data;
+      });
   }
 
-  openBuyDialog() {}
+  openBuyDialog() {
+    if (!this.authService.getIsLoggedIn()) {
+      alert('Debes iniciar sesión para comprar');
+      this.router.navigateByUrl('/login');
+      return;
+    }
+
+    if (this.authService.getRole() === 'Administrator') {
+      alert('Los administradores no pueden comprar boletos');
+      return;
+    }
+
+    const buyDialogRef = this.matDialog.open(BuyDialogComponent, {
+      data: this.concert,
+      disableClose: true,
+    });
+
+    buyDialogRef.afterClosed().subscribe((res) => {
+      if (!res) return;
+      alert('Compra exitosa');
+    });
+  }
 }

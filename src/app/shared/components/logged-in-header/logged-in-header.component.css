@@ -25,6 +25,14 @@ header {
         margin: 0;
       }
     }
+    & .name-container {
+      width: 50%;
+      display: flex;
+      justify-content: end;
+      & span {
+        color: white;
+      }
+    }
     & .buttons-container {
       display: flex;
       justify-content: center;
