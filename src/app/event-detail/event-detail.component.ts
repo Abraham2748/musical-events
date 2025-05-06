@@ -11,6 +11,8 @@ import { ConcertsService } from '../shared/services/concerts.service';
 import { BuyDialogComponent } from './buy-dialog/buy-dialog.component';
 import { HttpErrorResponse } from '@angular/common/http';
 import { catchError, of } from 'rxjs';
+import { VoucherDialogComponent } from '../shared/components/voucher-dialog/voucher-dialog.component';
+import confetti from 'canvas-confetti';
 
 @Component({
   selector: 'app-event-detail',
@@ -68,6 +70,16 @@ export class EventDetailComponent implements OnInit {
     buyDialogRef.afterClosed().subscribe((res) => {
       if (!res) return;
       alert('Compra exitosa');
+      confetti({
+        zIndex: 1001,
+      });
+      const voucherDialogRef = this.matDialog.open(VoucherDialogComponent, {
+        data: res,
+      });
+
+      voucherDialogRef.afterClosed().subscribe(() => {
+        this.router.navigateByUrl('/');
+      });
     });
   }
 }
