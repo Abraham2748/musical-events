@@ -9,6 +9,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Genre } from '../shared/models/genre.model';
 import { HomeService } from '../shared/services/home.service';
 import { HighlightableDirective } from '../shared/directives/highlightable.directive';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +21,7 @@ import { HighlightableDirective } from '../shared/directives/highlightable.direc
     MatSelectModule,
     ReactiveFormsModule,
     HighlightableDirective,
+    RouterLink,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',

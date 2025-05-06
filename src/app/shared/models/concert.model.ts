@@ -14,3 +14,9 @@ export interface Concert {
   finalized: boolean;
   status: string;
 }
+
+export interface GetConcertByIdResponse {
+  data: Concert;
+  success: boolean;
+  errorMessage: string;
+}
