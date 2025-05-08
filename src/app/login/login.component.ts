@@ -12,9 +12,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { Router, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../shared/services/auth.service';
-import { catchError, Observable, of } from 'rxjs';
+import { catchError, delay, Observable, of } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NotificationsService } from 'angular2-notifications';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -45,7 +46,6 @@ export class LoginComponent {
   login() {
     const email = this.loginForm.controls.email.value!;
     const password = this.loginForm.controls.password.value!;
-
     this.authService.login(email, password).subscribe((res) => {
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('tokenExpiration', res.data.expirationDate);
