@@ -1,7 +1,8 @@
-import { HttpInterceptorFn } from '@angular/common/http';
+import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { AuthService } from './shared/services/auth.service';
-import { EMPTY } from 'rxjs';
+import { catchError, EMPTY, of } from 'rxjs';
+import { NotificationsService } from 'angular2-notifications';
 
 export const appInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req);
@@ -32,4 +33,14 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
   }
 
   return next(clonedRequest);
+};
+
+export const handleHttpErrorInterceptor: HttpInterceptorFn = (req, next) => {
+  const notifications = inject(NotificationsService);
+  return next(req).pipe(
+    catchError((err: HttpErrorResponse) => {
+      notifications.error('Error', err.error.errorMessage);
+      return of();
+    })
+  );
 };

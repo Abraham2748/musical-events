@@ -9,6 +9,7 @@ import { ResetPasswordRequestBody } from '../../shared/models/auth.model';
 import { DialogRef } from '@angular/cdk/dialog';
 import { HttpErrorResponse } from '@angular/common/http';
 import { catchError, of } from 'rxjs';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-reset-password-dialog',
@@ -21,6 +22,7 @@ export class ResetPasswordDialogComponent {
   router = inject(Router);
   data = inject(MAT_DIALOG_DATA) as { email: string };
   dialogRef = inject(DialogRef);
+  notifications = inject(NotificationsService);
 
   verifyPasswords(form: NgForm) {
     const password = form.controls['password'];
@@ -46,19 +48,10 @@ export class ResetPasswordDialogComponent {
       newPassword: form.controls['password'].value,
       confirmNewPassword: form.controls['confirmPassword'].value,
     };
-    this.authService
-      .resetPassword(body)
-      .pipe(
-        catchError((err: HttpErrorResponse) => {
-          console.log('error: ', err);
-          alert(err.error.errorMessage);
-          return of();
-        })
-      )
-      .subscribe(() => {
-        alert('Contraseña actualizada. Inicia sesión');
-        this.router.navigateByUrl('/login');
-        this.dialogRef.close();
-      });
+    this.authService.resetPassword(body).subscribe(() => {
+      this.notifications.success('Contraseña actualizada', 'Inicia sesión');
+      this.router.navigateByUrl('/login');
+      this.dialogRef.close();
+    });
   }
 }

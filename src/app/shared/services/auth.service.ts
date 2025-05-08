@@ -8,6 +8,7 @@ import {
 } from '../models/auth.model';
 import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
+import { NotificationsService } from 'angular2-notifications';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +25,7 @@ export class AuthService {
   private isLoggedIn = false;
 
   router = inject(Router);
+  notifications = inject(NotificationsService);
 
   getEmail() {
     return this.email;
@@ -86,10 +88,10 @@ export class AuthService {
     this.isLoggedIn = false;
 
     if (tokenExpired) {
-      alert('Token Expirado. Por favor inicia sesión');
+      this.notifications.warn('Token Expirado. Por favor inicia sesión');
       this.router.navigateByUrl('/login');
     } else {
-      alert('Logout exitoso. Vuelve pronto.');
+      this.notifications.success('Logout exitoso', 'Vuelve pronto');
       this.router.navigateByUrl('/');
     }
   }

@@ -13,6 +13,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { catchError, of } from 'rxjs';
 import { VoucherDialogComponent } from '../shared/components/voucher-dialog/voucher-dialog.component';
 import confetti from 'canvas-confetti';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-event-detail',
@@ -33,32 +34,27 @@ export class EventDetailComponent implements OnInit {
   eventId = '';
   activatedRouter = inject(ActivatedRoute);
   concertsService = inject(ConcertsService);
+  notifications = inject(NotificationsService);
 
   ngOnInit() {
     this.eventId = this.activatedRouter.snapshot.params['id'];
-    this.concertsService
-      .getConcertById(this.eventId)
-      .pipe(
-        catchError((err: HttpErrorResponse) => {
-          console.log('error: ', err);
-          alert(err.error.errorMessage);
-          return of();
-        })
-      )
-      .subscribe((res) => {
-        this.concert = res.data;
-      });
+    this.concertsService.getConcertById(this.eventId).subscribe((res) => {
+      this.concert = res.data;
+    });
   }
 
   openBuyDialog() {
     if (!this.authService.getIsLoggedIn()) {
-      alert('Debes iniciar sesión para comprar');
+      this.notifications.warn('Cuidado', 'Debes iniciar sesión para comprar');
       this.router.navigateByUrl('/login');
       return;
     }
 
     if (this.authService.getRole() === 'Administrator') {
-      alert('Los administradores no pueden comprar boletos');
+      this.notifications.warn(
+        'Cuidado',
+        'Los administradores no pueden comprar boletos'
+      );
       return;
     }
 
@@ -69,7 +65,7 @@ export class EventDetailComponent implements OnInit {
 
     buyDialogRef.afterClosed().subscribe((res) => {
       if (!res) return;
-      alert('Compra exitosa');
+      this.notifications.success('Compra exitosa');
       confetti({
         zIndex: 1001,
       });

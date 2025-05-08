@@ -17,17 +17,8 @@ export class VoucherDialogComponent implements OnInit {
   concertsService = inject(ConcertsService);
 
   ngOnInit(): void {
-    this.concertsService
-      .getSaleById(this.saleId)
-      .pipe(
-        catchError((err: HttpErrorResponse) => {
-          console.log('error: ', err);
-          alert(err.error.errorMessage);
-          return of();
-        })
-      )
-      .subscribe((res) => {
-        this.sale = res.data;
-      });
+    this.concertsService.getSaleById(this.saleId).subscribe((res) => {
+      this.sale = res.data;
+    });
   }
 }

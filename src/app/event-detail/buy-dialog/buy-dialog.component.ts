@@ -23,13 +23,6 @@ export class BuyDialogComponent {
   buyTickets(quantity: number) {
     this.concertsService
       .buyTickets(this.data.id.toString(), quantity)
-      .pipe(
-        catchError((err: HttpErrorResponse) => {
-          console.log('error: ', err);
-          alert(err.error.errorMessage);
-          return of();
-        })
-      )
       .subscribe((res) => {
         this.matDialogRef.close(res.data);
       });

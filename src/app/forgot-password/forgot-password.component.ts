@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ResetPasswordDialogComponent } from './reset-password-dialog/reset-password-dialog.component';
 import { catchError, of } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-forgot-password',
@@ -29,23 +30,14 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class ForgotPasswordComponent {
   matDialog = inject(MatDialog);
   authService = inject(AuthService);
+  notifications = inject(NotificationsService);
   sendToken(email: string) {
-    this.authService
-      .sendTokenToResetPassword(email)
-
-      .pipe(
-        catchError((err: HttpErrorResponse) => {
-          console.log('error: ', err);
-          alert(err.error.errorMessage);
-          return of();
-        })
-      )
-      .subscribe(() => {
-        alert('Token Enviado. Revisa tu correo.');
-        this.matDialog.open(ResetPasswordDialogComponent, {
-          data: { email },
-          disableClose: true,
-        });
+    this.authService.sendTokenToResetPassword(email).subscribe(() => {
+      this.notifications.info('Token Enviado. Revisa tu correo.');
+      this.matDialog.open(ResetPasswordDialogComponent, {
+        data: { email },
+        disableClose: true,
       });
+    });
   }
 }

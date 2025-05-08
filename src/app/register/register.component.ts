@@ -16,6 +16,7 @@ import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { catchError, EMPTY } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-register',
@@ -34,6 +35,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class RegisterComponent {
   authService = inject(AuthService);
   router = inject(Router);
+  notifications = inject(NotificationsService);
   registerForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
@@ -58,18 +60,9 @@ export class RegisterComponent {
       firstName: this.registerForm.controls.name.value!,
       lastName: this.registerForm.controls.lastName.value!,
     };
-    this.authService
-      .register(body)
-      .pipe(
-        catchError((res: HttpErrorResponse) => {
-          alert('Error al intentar registrarse');
-          alert(res.error.errorMessage);
-          return EMPTY;
-        })
-      )
-      .subscribe(() => {
-        alert('Registro Exitoso. Inicia sesión');
-        this.router.navigate(['/login']);
-      });
+    this.authService.register(body).subscribe(() => {
+      this.notifications.success('Registro Exitoso', 'Inicia sesión');
+      this.router.navigate(['/login']);
+    });
   }
 }

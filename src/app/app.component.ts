@@ -1,17 +1,21 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AuthService } from './shared/services/auth.service';
+import { Options, SimpleNotificationsModule } from 'angular2-notifications';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, SimpleNotificationsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'musical-events';
   authService = inject(AuthService);
-
+  notificationsOptions: Options = {
+    position: ['top', 'right'],
+    timeOut: 3000,
+  };
   constructor() {
     this.authService.decodeToken();
   }

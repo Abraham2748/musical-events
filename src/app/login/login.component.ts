@@ -14,6 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../shared/services/auth.service';
 import { catchError, Observable, of } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-login',
@@ -39,26 +40,18 @@ export class LoginComponent {
     ]),
   });
   router = inject(Router);
+  notifications = inject(NotificationsService);
 
   login() {
     const email = this.loginForm.controls.email.value!;
     const password = this.loginForm.controls.password.value!;
 
-    this.authService
-      .login(email, password)
-      .pipe(
-        catchError((err: HttpErrorResponse) => {
-          console.log('error: ', err);
-          alert(err.error.errorMessage);
-          return of();
-        })
-      )
-      .subscribe((res) => {
-        localStorage.setItem('token', res.data.token);
-        localStorage.setItem('tokenExpiration', res.data.expirationDate);
-        this.authService.decodeToken();
-        alert('Login exitoso, bienvenido.');
-        this.router.navigateByUrl('/');
-      });
+    this.authService.login(email, password).subscribe((res) => {
+      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('tokenExpiration', res.data.expirationDate);
+      this.authService.decodeToken();
+      this.notifications.success('Login exitoso', 'Bienvenido.');
+      this.router.navigateByUrl('/');
+    });
   }
 }
