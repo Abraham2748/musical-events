@@ -8,6 +8,10 @@ import { CustomerComponent } from './customer/customer.component';
 import { AdminComponent } from './admin/admin.component';
 import { MyPurchasesComponent } from './customer/my-purchases/my-purchases.component';
 import { ChangePasswordComponent } from './customer/change-password/change-password.component';
+import { SalesComponent } from './admin/sales/sales.component';
+import { EventsComponent } from './admin/events/events.component';
+import { GenresComponent } from './admin/genres/genres.component';
+import { ReportsComponent } from './admin/reports/reports.component';
 
 export const routes: Routes = [
   {
@@ -38,7 +42,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        pathMatch: 'prefix',
+        pathMatch: 'full',
         redirectTo: 'my-purchases',
       },
       {
@@ -53,6 +57,26 @@ export const routes: Routes = [
   },
   {
     path: 'admin',
+    pathMatch: 'prefix',
     component: AdminComponent,
+    children: [
+      { path: '', pathMatch: 'full', redirectTo: 'sales' },
+      {
+        path: 'sales',
+        component: SalesComponent,
+      },
+      {
+        path: 'events',
+        component: EventsComponent,
+      },
+      {
+        path: 'genres',
+        component: GenresComponent,
+      },
+      {
+        path: 'reports',
+        component: ReportsComponent,
+      },
+    ],
   },
 ];
