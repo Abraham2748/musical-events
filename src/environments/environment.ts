@@ -1,3 +1,3 @@
 export const environment = {
-  baseUrl: 'prod-server.com',
+  baseUrl: 'http://localhost:8080/api/',
 };
