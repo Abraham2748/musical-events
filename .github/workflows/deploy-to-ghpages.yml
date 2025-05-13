@@ -27,3 +27,4 @@ jobs:
         with:
           branch: gh-pages
           folder: dist/musical-events/browser
+          token: ${{ secrets.PAT_VALUE }}
