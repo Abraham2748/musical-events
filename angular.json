@@ -98,7 +98,7 @@
           "builder": "angular-cli-ghpages:deploy",
           "configurations": {
             "production": {
-              "baseHref": "https://abraham2748.online/"
+              "baseHref": "https://abraham2748.online"
             }
           },
           "defaultConfiguration": "production"
