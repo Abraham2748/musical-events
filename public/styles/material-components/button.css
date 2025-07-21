@@ -7,3 +7,12 @@
   --mdc-filled-button-disabled-label-text-color: gray;
   --mdc-filled-button-disabled-container-color: darkgray;
 }
+
+button.primary {
+  --mat-button-text-label-text-color: var(--primary-color);
+  --mat-button-text-state-layer-color: var(--primary-color);
+}
+button.accent {
+  --mat-button-text-label-text-color: var(--accent-color);
+  --mat-button-text-state-layer-color: var(--accent-color);
+}
