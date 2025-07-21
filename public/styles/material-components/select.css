@@ -16,6 +16,8 @@
   --mat-option-selected-state-layer-color: var(--primary-color);
   --mat-form-field-filled-container-color: var(--secondary-color);
   --mat-form-field-filled-label-text-color: var(--primary-color);
+  --mat-form-field-filled-hover-label-text-color: var(--primary-color);
+  --mat-form-field-filled-focus-label-text-color: var(--primary-color);
 }
 
 /*  Check icon color */
