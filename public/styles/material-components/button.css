@@ -6,6 +6,8 @@
   --mdc-filled-button-container-height: 30px;
   --mdc-filled-button-disabled-label-text-color: gray;
   --mdc-filled-button-disabled-container-color: darkgray;
+  --mat-button-filled-container-color: var(--primary-color);
+  --mat-button-filled-label-text-color: var(--secondary-color);
 }
 
 button.primary {

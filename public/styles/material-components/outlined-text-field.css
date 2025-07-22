@@ -10,6 +10,8 @@
   --mdc-outlined-text-field-disabled-label-text-color: gray;
   /* caret color primary */
   --mdc-outlined-text-field-caret-color: var(--primary-color);
+
+  --mat-form-field-outlined-input-text-color: white;
 }
 
 /* Hide arrows for input number */
