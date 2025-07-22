@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
+import { SimpleHeader } from '../shared/components/simple-header/simple-header';
 
 @Component({
   selector: 'app-login',
-  imports: [],
+  imports: [SimpleHeader],
   templateUrl: './login.html',
-  styleUrl: './login.css'
+  styleUrl: './login.css',
 })
-export class Login {
-
-}
+export class Login {}
