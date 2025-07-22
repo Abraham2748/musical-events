@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { LoginApiResponse } from '../models/auth.model';
 import { jwtDecode } from 'jwt-decode';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,8 @@ export class Auth {
   private name = signal('');
 
   private isLoggedIn = signal(false);
+
+  private router = inject(Router);
 
   getEmail() {
     return this.email();
@@ -70,14 +73,19 @@ export class Auth {
     this.isLoggedIn.set(true);
   }
 
-  logout() {
+  logout(tokenExpired = false) {
     localStorage.clear();
     this.name.set('');
     this.email.set('');
     this.role.set('');
     this.tokenExpiration.set(new Date());
     this.isLoggedIn.set(false);
-
-    alert('Logout exitoso');
+    if (tokenExpired) {
+      alert('Token expirado, inicio sesión por favor');
+      this.router.navigateByUrl('/login');
+    } else {
+      alert('Logout exitoso');
+      this.router.navigateByUrl('/');
+    }
   }
 }
