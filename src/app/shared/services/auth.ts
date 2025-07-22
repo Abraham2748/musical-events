@@ -69,4 +69,15 @@ export class Auth {
 
     this.isLoggedIn.set(true);
   }
+
+  logout() {
+    localStorage.clear();
+    this.name.set('');
+    this.email.set('');
+    this.role.set('');
+    this.tokenExpiration.set(new Date());
+    this.isLoggedIn.set(false);
+
+    alert('Logout exitoso');
+  }
 }

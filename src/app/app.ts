@@ -1,14 +1,16 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Home } from './home/home';
-import { Login } from './login/login';
+import { Auth } from './shared/services/auth';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Login],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
 export class App {
-  protected readonly title = signal('musical-events');
+  authService = inject(Auth);
+  constructor() {
+    this.authService.decodeToken();
+  }
 }
