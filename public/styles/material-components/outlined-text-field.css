@@ -1,17 +1,24 @@
 :root {
-  --mdc-outlined-text-field-input-text-color: white;
-  --mdc-outlined-text-field-label-text-color: var(--primary-color);
-  --mdc-outlined-text-field-focus-label-text-color: var(--primary-color);
-  --mdc-outlined-text-field-outline-color: var(--primary-color);
-  --mdc-outlined-text-field-focus-outline-color: var(--primary-color);
-  --mdc-outlined-text-field-hover-outline-color: var(--primary-color);
-  --mdc-outlined-text-field-hover-label-text-color: white;
-  --mdc-outlined-text-field-disabled-input-text-color: gray;
-  --mdc-outlined-text-field-disabled-label-text-color: gray;
-  /* caret color primary */
-  --mdc-outlined-text-field-caret-color: var(--primary-color);
-
   --mat-form-field-outlined-input-text-color: white;
+  --mat-form-field-outlined-label-text-color: var(--primary-color);
+  --mat-form-field-outlined-focus-label-text-color: var(--primary-color);
+  --mat-form-field-outlined-outline-color: var(--primary-color);
+  --mat-form-field-outlined-focus-outline-color: var(--primary-color);
+  --mat-form-field-outlined-hover-outline-color: var(--primary-color);
+  --mat-form-field-outlined-hover-label-text-color: white;
+  --mat-form-field-outlined-disabled-input-text-color: gray;
+  --mat-form-field-outlined-disabled-label-text-color: gray;
+  --mat-form-field-outlined-caret-color: var(--primary-color);
+
+  /*Field with errors*/
+  --mat-form-field-error-text-color: red;
+  --mat-form-field-outlined-error-label-text-color: red;
+  --mat-form-field-outlined-error-hover-label-text-color: red;
+  --mat-form-field-outlined-error-focus-label-text-color: red;
+  --mat-form-field-outlined-error-caret-color: red;
+  --mat-form-field-outlined-error-outline-color: red;
+  --mat-form-field-outlined-error-focus-outline-color: red;
+  --mat-form-field-outlined-error-hover-outline-color: red;
 }
 
 /* Hide arrows for input number */
