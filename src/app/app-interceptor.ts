@@ -1,7 +1,7 @@
-import { HttpInterceptorFn } from '@angular/common/http';
+import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Auth } from './shared/services/auth';
-import { EMPTY, of } from 'rxjs';
+import { catchError, EMPTY, of } from 'rxjs';
 
 export const appInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req);
@@ -19,4 +19,14 @@ export const tokenExpiredInterceptor: HttpInterceptorFn = (req, next) => {
   }
 
   return next(req);
+};
+
+export const handleHttpErrorInterceptor: HttpInterceptorFn = (req, next) => {
+  return next(req).pipe(
+    catchError((err: HttpErrorResponse) => {
+      alert(err.error.errorMessage);
+      console.error('Error HTTP capturado: ', err);
+      return EMPTY;
+    })
+  );
 };

@@ -44,21 +44,12 @@ export class Login {
     const email = this.loginForm.controls.email.value!;
     const password = this.loginForm.controls.password.value!;
 
-    this.authService
-      .login(email, password)
-      .pipe(
-        catchError((err: HttpErrorResponse) => {
-          alert(err.error.errorMessage);
-          console.log('error: ', err);
-          return of();
-        })
-      )
-      .subscribe((res) => {
-        localStorage.setItem('token', res.data.token);
-        localStorage.setItem('tokenExpiration', res.data.expirationDate);
-        this.authService.decodeToken();
-        alert('Bienvenido');
-        this.router.navigateByUrl('/');
-      });
+    this.authService.login(email, password).subscribe((res) => {
+      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('tokenExpiration', res.data.expirationDate);
+      this.authService.decodeToken();
+      alert('Bienvenido');
+      this.router.navigateByUrl('/');
+    });
   }
 }
