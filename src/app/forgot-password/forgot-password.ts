@@ -7,6 +7,8 @@ import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { Auth } from '../shared/services/auth';
+import { MatDialog } from '@angular/material/dialog';
+import { ResetPasswordDialog } from './reset-password-dialog/reset-password-dialog';
 
 @Component({
   selector: 'app-forgot-password',
@@ -24,9 +26,14 @@ import { Auth } from '../shared/services/auth';
 })
 export class ForgotPassword {
   authService = inject(Auth);
+  matDialog = inject(MatDialog);
   sendToken(email: string) {
     this.authService.sendTokenToResetPassword(email).subscribe(() => {
       alert('Token Enviado, revisa tu correo');
+      this.matDialog.open(ResetPasswordDialog, {
+        disableClose: true,
+        data: { email },
+      });
     });
   }
 }

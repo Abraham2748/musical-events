@@ -1,6 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
-import { LoginApiResponse, RegisterRequestBody } from '../models/auth.model';
+import {
+  LoginApiResponse,
+  RegisterRequestBody,
+  ResetPasswordRequestBody,
+} from '../models/auth.model';
 import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
 
@@ -56,6 +60,10 @@ export class Auth {
     return this.http.post(this.baseUrl + 'users/RequestTokenToResetPassword', {
       email,
     });
+  }
+
+  resetPassword(body: ResetPasswordRequestBody) {
+    return this.http.post(this.baseUrl + 'users/ResetPassword', body);
   }
 
   decodeToken() {

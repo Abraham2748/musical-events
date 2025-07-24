@@ -8,6 +8,7 @@
   --mat-form-field-outlined-hover-label-text-color: white;
   --mat-form-field-outlined-disabled-input-text-color: gray;
   --mat-form-field-outlined-disabled-label-text-color: gray;
+  --mat-form-field-outlined-disabled-outline-color: gray;
   --mat-form-field-outlined-caret-color: var(--primary-color);
 
   /*Field with errors*/
