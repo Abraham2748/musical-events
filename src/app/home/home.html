@@ -21,7 +21,7 @@
       <app-event-card
         appHighlightable
         [data]="concert"
-        routerLink="/event-detail"
+        [routerLink]="'/event-detail/' + concert.id"
       ></app-event-card>
       } @empty {
       <h2>No encontramos conciertos 🥲</h2>

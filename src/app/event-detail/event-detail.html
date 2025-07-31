@@ -1,1 +1,26 @@
-<app-logged-in-header></app-logged-in-header>
+<div class="page-container">
+  <app-logged-in-header></app-logged-in-header>
+  <div class="container">
+    <div class="title-container">
+      <span>Compra tus entradas y disfruta!</span>
+    </div>
+    <div class="content">
+      <app-event-card [data]="concert"></app-event-card>
+      <div class="panel-container">
+        <div class="description">
+          <span>Acerca del evento</span> <br /><br />
+          <p>{{ concert.extendedDescription }}</p>
+        </div>
+        <div class="actions">
+          <span class="price"
+            >Precio: <span>S/ {{ concert.unitPrice.toFixed(2) }}</span></span
+          >
+          <button mat-flat-button (click)="openBuyDialog()">
+            COMPRAR ENTRADA
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

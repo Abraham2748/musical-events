@@ -23,7 +23,13 @@ export const routes: Routes = [
     component: ForgotPassword,
   },
   {
-    path: 'event-detail',
+    path: 'event-detail/:id',
+    pathMatch: 'full',
     component: EventDetail,
+  },
+  {
+    path: 'event-detail',
+    pathMatch: 'full',
+    redirectTo: '',
   },
 ];
