@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Auth } from '../shared/services/auth';
 import { MatDialog } from '@angular/material/dialog';
 import { ResetPasswordDialog } from './reset-password-dialog/reset-password-dialog';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-forgot-password',
@@ -27,9 +28,10 @@ import { ResetPasswordDialog } from './reset-password-dialog/reset-password-dial
 export class ForgotPassword {
   authService = inject(Auth);
   matDialog = inject(MatDialog);
+  notifications = inject(NotificationsService);
   sendToken(email: string) {
     this.authService.sendTokenToResetPassword(email).subscribe(() => {
-      alert('Token Enviado, revisa tu correo');
+      this.notifications.info('Token Enviado. Revisa tu correo.');
       this.matDialog.open(ResetPasswordDialog, {
         disableClose: true,
         data: { email },

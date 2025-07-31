@@ -14,6 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { Auth } from '../shared/services/auth';
 import { Router, RouterLink } from '@angular/router';
 import { RegisterRequestBody } from '../shared/models/auth.model';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-register',
@@ -45,6 +46,7 @@ export class Register {
     documentType: new FormControl('', [Validators.required]),
     documentNumber: new FormControl('', [Validators.required]),
   });
+  notifications = inject(NotificationsService);
 
   register() {
     const body: RegisterRequestBody = {
@@ -58,7 +60,7 @@ export class Register {
       lastName: this.registerForm.controls.lastName.value!,
     };
     this.authService.register(body).subscribe(() => {
-      alert('Registro exitoso');
+      this.notifications.success('Registro Exitoso', 'Inicia sesión');
       this.router.navigateByUrl('/login');
     });
   }

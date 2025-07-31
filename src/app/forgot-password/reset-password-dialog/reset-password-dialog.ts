@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogRef } from '@angular/cdk/dialog';
 import { ResetPasswordRequestBody } from '../../shared/models/auth.model';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-reset-password-dialog',
@@ -19,6 +20,7 @@ export class ResetPasswordDialog {
   router = inject(Router);
   data = inject(MAT_DIALOG_DATA) as { email: string };
   dialogRef = inject(DialogRef);
+  notifications = inject(NotificationsService);
 
   resetPassword(form: NgForm) {
     const body: ResetPasswordRequestBody = {
@@ -28,7 +30,7 @@ export class ResetPasswordDialog {
       confirmNewPassword: form.controls['confirmPassword'].value,
     };
     this.authService.resetPassword(body).subscribe(() => {
-      alert('Contraseña actualizada, inicia sesión');
+      this.notifications.success('Contraseña actualizada', 'Inicia sesión');
       this.router.navigateByUrl('/login');
       this.dialogRef.close();
     });

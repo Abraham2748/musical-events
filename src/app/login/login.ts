@@ -14,6 +14,7 @@ import { Router, RouterLink } from '@angular/router';
 import { Auth } from '../shared/services/auth';
 import { catchError, of } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-login',
@@ -40,6 +41,8 @@ export class Login {
   });
   router = inject(Router);
 
+  notifications = inject(NotificationsService);
+
   login() {
     const email = this.loginForm.controls.email.value!;
     const password = this.loginForm.controls.password.value!;
@@ -48,7 +51,7 @@ export class Login {
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('tokenExpiration', res.data.expirationDate);
       this.authService.decodeToken();
-      alert('Bienvenido');
+      this.notifications.success('Login exitoso', 'Bienvenido.');
       this.router.navigateByUrl('/');
     });
   }
