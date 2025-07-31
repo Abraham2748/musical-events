@@ -18,7 +18,11 @@
     </div>
     <div class="event-list">
       @for (concert of concerts(); track concert.id) {
-      <app-event-card appHighlightable [data]="concert"></app-event-card>
+      <app-event-card
+        appHighlightable
+        [data]="concert"
+        routerLink="/event-detail"
+      ></app-event-card>
       } @empty {
       <h2>No encontramos conciertos 🥲</h2>
       }

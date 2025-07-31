@@ -15,6 +15,7 @@ import { Genre } from '../shared/models/genre';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { HomeApi } from '../shared/services/home-api';
 import { Highlightable } from '../shared/directives/highlightable';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -26,6 +27,7 @@ import { Highlightable } from '../shared/directives/highlightable';
     MatSelectModule,
     ReactiveFormsModule,
     Highlightable,
+    RouterLink,
   ],
   templateUrl: './home.html',
   styleUrl: './home.css',
