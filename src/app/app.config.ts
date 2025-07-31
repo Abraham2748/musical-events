@@ -9,6 +9,7 @@ import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import {
   handleHttpErrorInterceptor,
+  jwtInterceptor,
   tokenExpiredInterceptor,
 } from './app-interceptor';
 
@@ -18,7 +19,11 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(
-      withInterceptors([tokenExpiredInterceptor, handleHttpErrorInterceptor])
+      withInterceptors([
+        tokenExpiredInterceptor,
+        handleHttpErrorInterceptor,
+        jwtInterceptor,
+      ])
     ),
   ],
 };
