@@ -23,7 +23,7 @@ export class BuyDialog {
       .buyTickets(this.data.id.toString(), quantity)
       .subscribe((res) => {
         alert('Compra exitosa');
-        console.log('id de venta: ', res.data);
+        this.matDialogRef.close(res.data);
       });
   }
 }

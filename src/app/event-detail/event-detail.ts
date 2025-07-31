@@ -9,6 +9,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ConcertsService } from '../shared/services/concerts-service';
 import { BuyDialog } from './buy-dialog/buy-dialog';
+import { VoucherDialog } from '../shared/components/voucher-dialog/voucher-dialog';
+import confetti from 'canvas-confetti';
 
 @Component({
   selector: 'app-event-detail',
@@ -46,9 +48,25 @@ export class EventDetail implements OnInit {
       return;
     }
 
-    this.matDialog.open(BuyDialog, {
+    const buyDialogRef = this.matDialog.open(BuyDialog, {
       data: this.concert,
       disableClose: true,
+    });
+
+    buyDialogRef.afterClosed().subscribe((saleId: number) => {
+      if (!saleId) return;
+
+      confetti({
+        zIndex: 1001,
+      });
+
+      const voucherDialogRef = this.matDialog.open(VoucherDialog, {
+        data: saleId,
+      });
+
+      voucherDialogRef.afterClosed().subscribe(() => {
+        this.router.navigateByUrl('/');
+      });
     });
   }
 }
