@@ -1,8 +1,9 @@
 import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Auth } from './shared/services/auth';
-import { catchError, EMPTY, of } from 'rxjs';
+import { catchError, EMPTY, finalize, of } from 'rxjs';
 import { NotificationsService } from 'angular2-notifications';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 export const appInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req);
@@ -43,4 +44,14 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
   } else {
     return next(req);
   }
+};
+
+export const loadingScreenInterceptor: HttpInterceptorFn = (req, next) => {
+  const spinner = inject(NgxSpinnerService);
+  spinner.show();
+  return next(req).pipe(
+    finalize(() => {
+      spinner.hide();
+    })
+  );
 };

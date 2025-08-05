@@ -1,15 +1,12 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Auth } from './shared/services/auth';
-import {
-  NotificationsService,
-  Options,
-  SimpleNotificationsModule,
-} from 'angular2-notifications';
+import { Options, SimpleNotificationsModule } from 'angular2-notifications';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, SimpleNotificationsModule],
+  imports: [RouterOutlet, SimpleNotificationsModule, NgxSpinnerModule],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
