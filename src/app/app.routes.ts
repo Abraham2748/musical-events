@@ -7,6 +7,11 @@ import { EventDetail } from './event-detail/event-detail';
 import { Customer } from './customer/customer';
 import { MyPurchases } from './customer/my-purchases/my-purchases';
 import { ChangePassword } from './customer/change-password/change-password';
+import { Admin } from './admin/admin';
+import { Sales } from './admin/sales/sales';
+import { Events } from './admin/events/events';
+import { Genres } from './admin/genres/genres';
+import { Reports } from './admin/reports/reports';
 
 export const routes: Routes = [
   {
@@ -52,6 +57,30 @@ export const routes: Routes = [
       {
         path: 'change-password',
         component: ChangePassword,
+      },
+    ],
+  },
+  {
+    path: 'admin',
+    pathMatch: 'prefix',
+    component: Admin,
+    children: [
+      { path: '', pathMatch: 'full', redirectTo: 'sales' },
+      {
+        path: 'sales',
+        component: Sales,
+      },
+      {
+        path: 'events',
+        component: Events,
+      },
+      {
+        path: 'genres',
+        component: Genres,
+      },
+      {
+        path: 'reports',
+        component: Reports,
       },
     ],
   },
