@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "outputPath": "dist/musical-events/browser/",
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
@@ -88,7 +89,7 @@
           "builder": "angular-cli-ghpages:deploy",
           "configurations": {
             "production": {
-              "baseHref": "/"
+              "baseHref": "https://abraham2748.online"
             }
           },
           "defaultConfiguration": "production"
