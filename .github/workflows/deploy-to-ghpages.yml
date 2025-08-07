@@ -26,5 +26,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: dist/musical-events/browser
+          folder: dist/musical-events/browser/
           token: ${{ secrets.PAT_VALUE }}
