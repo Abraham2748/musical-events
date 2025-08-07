@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { to2digit } from '../../shared/adapters/custom-date-adapter';
 import { ListSalesByDateApiResponse } from './sales.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SalesService {
-  private baseUrl = 'http://localhost:8080/api/';
+  private baseUrl = environment.baseUrl;
   private http = inject(HttpClient);
 
   listSalesByDate(dateStart: Date, dateEnd: Date) {
