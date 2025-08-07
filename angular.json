@@ -83,6 +83,15 @@
               "src/styles.css"
             ]
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "configurations": {
+            "production": {
+              "baseHref": "/"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
