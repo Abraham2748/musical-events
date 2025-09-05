@@ -25,7 +25,7 @@ export class BuyDialog {
     this.concertsService
       .buyTickets(this.data.id.toString(), quantity)
       .subscribe((res) => {
-        // this.notifications.success('Compra exitosa');
+        this.notifications.success('Compra exitosa');
         this.matDialogRef.close(res.data);
       });
   }
