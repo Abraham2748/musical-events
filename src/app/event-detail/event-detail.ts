@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { LoggedInHeader } from '../shared/components/logged-in-header/logged-in-header';
 import { Footer } from '../shared/components/footer/footer';
 import { EventCard } from '../shared/components/event-card/event-card';
@@ -20,7 +20,7 @@ import { NotificationsService } from 'angular2-notifications';
   styleUrl: './event-detail.css',
 })
 export class EventDetail implements OnInit {
-  concert!: Concert;
+  concert = signal<Concert | null>(null);
 
   authService = inject(Auth);
   router = inject(Router);
@@ -34,7 +34,7 @@ export class EventDetail implements OnInit {
   ngOnInit(): void {
     this.eventId = this.activatedRoute.snapshot.params['id'];
     this.concertService.getConcertById(this.eventId).subscribe((res) => {
-      this.concert = res.data;
+      this.concert.set(res.data);
     });
   }
 
@@ -54,7 +54,7 @@ export class EventDetail implements OnInit {
     }
 
     const buyDialogRef = this.matDialog.open(BuyDialog, {
-      data: this.concert,
+      data: this.concert(),
       disableClose: true,
     });
 

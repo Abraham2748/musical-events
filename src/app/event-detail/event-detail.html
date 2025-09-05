@@ -4,7 +4,7 @@
     <div class="title-container">
       <span>Compra tus entradas y disfruta!</span>
     </div>
-    @if(concert){
+    @if(concert(); as concert){
     <div class="content">
       <app-event-card [data]="concert"></app-event-card>
       <div class="panel-container">

@@ -1,6 +1,6 @@
 <div class="container">
   <h2>VOUCHER</h2>
-  @if(sale){
+  @if(sale(); as sale){
   <div class="content">
     <span class="title">Nro. Operación</span> <br />
     <span>{{ sale.operationNumber }}</span>
