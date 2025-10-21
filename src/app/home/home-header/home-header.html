@@ -5,11 +5,11 @@
       <h1>MUSICAL EVENTS</h1>
     </div>
     <div class="search-container">
-      <input type="text" placeholder="Buscar..." />
+      <input type="text" placeholder="Buscar..." (input)="onInput($event)" />
     </div>
     <div class="buttons-container">
-      <button class="primary" matButton>INGRESAR</button>
-      <button class="accent" matButton>REGÍSTRATE</button>
+      <button class="primary" matButton routerLink="/login">INGRESAR</button>
+      <button class="accent" matButton routerLink="/register">REGÍSTRATE</button>
     </div>
   </div>
 </header>
