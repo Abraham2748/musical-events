@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-@import '../public/colors.css';
-@import '../public/material.css';
+@import '../public/styles/colors.css';
+@import '../public/styles/material.css';
 
 html,
 body {

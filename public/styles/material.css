@@ -1,0 +1,7 @@
+button.primary {
+  --mat-button-text-label-text-color: var(--primary-color);
+}
+
+button.accent {
+  --mat-button-text-label-text-color: var(--accent-color);
+}
