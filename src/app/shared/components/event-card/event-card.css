@@ -1,0 +1,44 @@
+.container {
+  width: 220px;
+  height: 360px;
+  background-color: var(--secondary-color);
+  display: flex;
+  flex-direction: column;
+  color: white;
+  border-radius: 8px;
+  & .superior {
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+    font-size: 13px;
+    font-weight: 500;
+    & .date-time-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-left: 10px;
+      gap: 8px;
+      & .date {
+        color: var(--primary-color);
+      }
+      & .time {
+        color: var(--accent-color);
+      }
+    }
+    & .genre-container {
+      & span {
+        display: block;
+        margin-top: 30px;
+        margin-right: 20px;
+      }
+    }
+  }
+  & .middle {
+    height: 200px;
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
