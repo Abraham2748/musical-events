@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HomeHeader } from './home-header/home-header';
 import { Footer } from '../shared/components/footer/footer';
 import { EventCard } from '../shared/components/event-card/event-card';
+import { Concert } from '../shared/models/concert';
 
 @Component({
   selector: 'app-home',

@@ -1,23 +1,20 @@
 <div class="container">
   <div class="superior">
     <div class="date-time-container">
-      <span class="date">14 de marzo 2020</span>
-      <span class="time">2:30 PM</span>
+      <span class="date"> {{ data.dateEvent }} </span>
+      <span class="time">{{ data.timeEvent }}</span>
     </div>
     <div class="genre-container">
-      <span>ROCK</span>
+      <span>
+        {{ data.genre | uppercase }}
+      </span>
     </div>
   </div>
   <div class="middle">
-    <img
-      src="https://m.media-amazon.com/images/I/51MOtp5iehL._AC_UF894,1000_QL80_.jpg"
-      alt="Event poster"
-    />
+    <img [src]="data.imageUrl" alt="Event poster" (error)="onImageError()" />
   </div>
   <div class="bottom">
-    <span class="description"
-      >Bon Jovi en concierto, no te lo pierdas. Bon Jovi en concierto, no te lo pierdas.</span
-    >
-    <span class="place">CC TEATRO LEGUIA - LIMA. CC TEATRO LEGUIA - LIMA.</span>
+    <span class="description">{{ data.description }}</span>
+    <span class="place">{{ data.place }}</span>
   </div>
 </div>
