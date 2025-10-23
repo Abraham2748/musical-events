@@ -1,2 +1,25 @@
 <app-home-header (searchValueChange)="searchValueChange($event)"></app-home-header>
+<div class="content-container">
+  <div class="filter">
+    <mat-form-field>
+      <mat-label>Género</mat-label>
+      <mat-select>
+        <mat-option value="1">Prueba 1</mat-option>
+        <mat-option value="2">Prueba 2</mat-option>
+        <mat-option value="3">Prueba 3</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <span>Selecciona tu genero musical favorito</span>
+  </div>
+  <div class="event-list">
+    <app-event-card [data]="concertTest"></app-event-card>
+    <app-event-card [data]="concertTest"></app-event-card>
+    <app-event-card [data]="concertTest"></app-event-card>
+    <app-event-card [data]="concertTest"></app-event-card>
+    <app-event-card [data]="concertTest"></app-event-card>
+    <app-event-card [data]="concertTest"></app-event-card>
+    <app-event-card [data]="concertTest"></app-event-card>
+    <app-event-card [data]="concertTest"></app-event-card>
+  </div>
+</div>
 <app-footer></app-footer>
