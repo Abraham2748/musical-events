@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Concert } from '../../models/concert';
+import { Concert } from '../../models/concert.model';
 import { UpperCasePipe } from '@angular/common';
 
 @Component({
