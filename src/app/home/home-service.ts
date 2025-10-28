@@ -6,8 +6,8 @@ import { HomeApiResponse } from '../shared/models/home-api.model';
   providedIn: 'root',
 })
 export class HomeService {
-  baseUrl = 'http://localhost:8080/api/';
-  http = inject(HttpClient);
+  private baseUrl = 'http://localhost:8080/api/';
+  private http = inject(HttpClient);
 
   getData() {
     return this.http.get<HomeApiResponse>(this.baseUrl + 'home');

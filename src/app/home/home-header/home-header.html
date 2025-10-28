@@ -7,9 +7,23 @@
     <div class="search-container">
       <input type="text" placeholder="Buscar..." (input)="onInput($event)" />
     </div>
+    @if(authService.getIsLoggedIn()){
+
+    <div class="buttons-container">
+      <button
+        class="primary"
+        matButton
+        [routerLink]="authService.getRole() === 'Administrator' ? '/admin' : '/customer'"
+      >
+        MENU
+      </button>
+      <button class="accent" matButton (click)="authService.logout()">CERRAR SESIÓN</button>
+    </div>
+    } @else {
     <div class="buttons-container">
       <button class="primary" matButton routerLink="/login">INGRESAR</button>
       <button class="accent" matButton routerLink="/register">REGÍSTRATE</button>
     </div>
+    }
   </div>
 </header>

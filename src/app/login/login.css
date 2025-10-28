@@ -43,6 +43,7 @@
         gap: 10px;
       }
       & .forgot-password {
+        margin-top: 8px;
         color: var(--accent-color);
         font-size: 12px;
         & span {

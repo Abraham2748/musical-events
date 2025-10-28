@@ -4,7 +4,7 @@
   --mat-button-filled-container-shape: 8px;
   --mat-filled-button-horizontal-padding: 12px;
   --mat-button-filled-container-height: 30px;
-  --mat-button-filled-disabled-label-text-color: gray;
+  --mat-button-filled-disabled-label-text-color: #333;
   --mat-button-filled-disabled-container-color: darkgray;
   --mat-button-filled-container-color: var(--primary-color);
   --mat-button-filled-label-text-color: var(--secondary-color);
