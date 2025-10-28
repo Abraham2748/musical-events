@@ -1,7 +1,2 @@
-button.primary {
-  --mat-button-text-label-text-color: var(--primary-color);
-}
-
-button.accent {
-  --mat-button-text-label-text-color: var(--accent-color);
-}
+@import './material-components/button.css';
+@import './material-components/outlined-text-field.css';
