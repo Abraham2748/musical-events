@@ -1,1 +1,76 @@
-<p>register works!</p>
+<div class="page-container">
+  <app-simple-header></app-simple-header>
+
+  <div class="title-container">
+    <div class="title">
+      <span>Regístrate, ingresa tus datos</span>
+    </div>
+  </div>
+  <div class="content-container">
+    <div class="card">
+      <div class="form-title-container">
+        <span>REGISTRO</span>
+      </div>
+      <form [formGroup]="registerForm">
+        <mat-form-field appearance="outline">
+          <mat-label>Nombres</mat-label>
+          <input type="text" matInput formControlName="firstName" />
+          <mat-error>Este campo es requerido</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Apellidos</mat-label>
+          <input type="text" matInput formControlName="lastName" />
+          <mat-error>Este campo es requerido</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput formControlName="email" />
+          @if(registerForm.controls.email.hasError("required")){
+          <mat-error>Este campo es requerido</mat-error>
+          } @if(registerForm.controls.email.hasError("email")){
+          <mat-error>Ingresa un email valido</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Edad</mat-label>
+          <input type="number" matInput formControlName="age" />
+          <mat-error>Este campo es requerido</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Contraseña</mat-label>
+          <input type="password" matInput formControlName="password" />
+          @if(registerForm.controls.password.hasError("required")){
+          <mat-error>Este campo es requerido</mat-error>
+          } @if(registerForm.controls.password.hasError("minlength")){
+          <mat-error>La contraseña debe tener al menos 8 caracteres</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Documento</mat-label>
+          <mat-select formControlName="documentType">
+            <mat-option value="0">DNI</mat-option>
+            <mat-option value="1">CE</mat-option>
+            <mat-option value="2">PASAPORTE</mat-option>
+            <mat-option value="3">OTRO</mat-option>
+          </mat-select>
+          <mat-error>Este campo es requerido</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Nro Documento</mat-label>
+          <input type="text" matInput formControlName="documentNumber" />
+          <mat-error>Este campo es requerido</mat-error>
+        </mat-form-field>
+        <button mat-flat-button [disabled]="registerForm.invalid" (click)="register()">
+          REGISTRAR
+        </button>
+        <div class="login">
+          <span
+            >Si ya tienes una cuenta <span class="text-link" routerLink="/login">ingresa</span>
+          </span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>
