@@ -50,6 +50,11 @@ export class Auth {
   register(body: RegisterRequestBody) {
     return this.http.post(this.baseUrl + 'users/register', body);
   }
+  sendTokenToResetPassword(email: string) {
+    return this.http.post(this.baseUrl + 'users/RequestTokenToResetPassword', {
+      email,
+    });
+  }
 
   decodeToken() {
     const token = localStorage.getItem('token');
