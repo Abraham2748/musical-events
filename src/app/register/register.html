@@ -11,7 +11,7 @@
       <div class="form-title-container">
         <span>REGISTRO</span>
       </div>
-      <form [formGroup]="registerForm">
+      <form [formGroup]="registerForm" action="">
         <mat-form-field appearance="outline">
           <mat-label>Nombres</mat-label>
           <input type="text" matInput formControlName="firstName" />
@@ -60,7 +60,12 @@
           <input type="text" matInput formControlName="documentNumber" />
           <mat-error>Este campo es requerido</mat-error>
         </mat-form-field>
-        <button mat-flat-button [disabled]="registerForm.invalid" (click)="register()">
+        <button
+          mat-flat-button
+          [disabled]="registerForm.invalid"
+          (click)="register()"
+          type="button"
+        >
           REGISTRAR
         </button>
         <div class="login">
