@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { Auth } from '../shared/services/auth';
 import { MatDialog } from '@angular/material/dialog';
+import { ResetPasswordDialog } from './reset-password-dialog/reset-password-dialog';
 
 @Component({
   selector: 'app-forgot-password',
@@ -30,7 +31,10 @@ export class ForgotPassword {
   sendToken(email: string) {
     this.authService.sendTokenToResetPassword(email).subscribe(() => {
       alert('Token enviado, revisa tu correo');
-      // open reset password dialog
+      this.matDialog.open(ResetPasswordDialog, {
+        data: { email },
+        disableClose: true,
+      });
     });
   }
 }
