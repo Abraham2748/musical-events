@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="concert-info">
+    <span class="title">{{ data.title }}</span> <br />
+    <span class="price"
+      >PRECIO: <span>S/ {{ data.unitPrice.toFixed(2) }}</span></span
+    >
+  </div>
+  <form>
+    <mat-form-field appearance="outline">
+      <mat-label>Cantidad</mat-label>
+      <input
+        type="number"
+        matInput
+        ngModel
+        name="quantity"
+        #quantityInput="ngModel"
+        max="10"
+        required
+      />
+      @if(quantityInput.hasError('required')){
+      <mat-error>Campo requerido</mat-error>
+      } @if(quantityInput.hasError('max')){
+      <mat-error>Solo 10 tickets como máximo</mat-error>
+      }
+    </mat-form-field>
+    <br />
+    <div class="total-container">
+      <span
+        >TOTAL:
+        <span class="total-value">
+          S/
+          {{ (data.unitPrice * (quantityInput.value ? quantityInput.value : 0)).toFixed(2) }}</span
+        ></span
+      >
+    </div>
+  </form>
+  <div class="actions">
+    <button
+      mat-flat-button
+      [disabled]="quantityInput.invalid"
+      (click)="buyTickets(quantityInput.value)"
+    >
+      PAGAR
+    </button>
+  </div>
+</div>

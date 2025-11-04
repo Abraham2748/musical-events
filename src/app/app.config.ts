@@ -7,13 +7,19 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { handleHttpErrorInterceptor, tokenExpiredInterceptor } from './app-interceptor';
+import {
+  handleHttpErrorInterceptor,
+  jwtInterceptor,
+  tokenExpiredInterceptor,
+} from './app-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([tokenExpiredInterceptor, handleHttpErrorInterceptor])),
+    provideHttpClient(
+      withInterceptors([tokenExpiredInterceptor, handleHttpErrorInterceptor, jwtInterceptor])
+    ),
   ],
 };
