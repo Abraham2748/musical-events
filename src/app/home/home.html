@@ -14,7 +14,11 @@
   </div>
   <div class="event-list">
     @for (concert of filteredConcerts; track $index) {
-    <app-event-card appHighlightable [data]="concert"></app-event-card>
+    <app-event-card
+      [routerLink]="'/event-detail/' + concert.id"
+      appHighlightable
+      [data]="concert"
+    ></app-event-card>
     }
   </div>
 </div>

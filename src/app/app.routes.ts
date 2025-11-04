@@ -24,6 +24,12 @@ export const routes: Routes = [
   },
   {
     path: 'event-detail',
+    pathMatch: 'full',
+    redirectTo: '',
+  },
+  {
+    path: 'event-detail/:id',
+    pathMatch: 'full',
     component: EventDetail,
   },
 ];

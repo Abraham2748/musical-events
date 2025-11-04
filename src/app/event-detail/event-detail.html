@@ -5,19 +5,21 @@
       <span>Compra tus entradas y disfruta!</span>
     </div>
     <div class="content">
-      <app-event-card [data]="testConcert"></app-event-card>
+      @if(concert) {
+      <app-event-card [data]="concert"></app-event-card>
       <div class="panel-container">
         <div class="description">
           <span>Acerca del Evento</span> <br /><br />
-          <p>{{ testConcert.extendedDescription }}</p>
+          <p>{{ concert.extendedDescription }}</p>
         </div>
         <div class="actions">
           <span
-            >Precio: <span class="price">S/ {{ testConcert.unitPrice.toFixed(2) }}</span></span
+            >Precio: <span class="price">S/ {{ concert.unitPrice.toFixed(2) }}</span></span
           >
           <button mat-flat-button (click)="openBuyDialog()">COMPRAR ENTRADA</button>
         </div>
       </div>
+      }
     </div>
   </div>
   <app-footer></app-footer>

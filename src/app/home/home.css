@@ -22,5 +22,8 @@
     gap: 20px;
     margin-top: 20px;
     margin-bottom: 40px;
+    & app-event-card {
+      cursor: pointer;
+    }
   }
 }
