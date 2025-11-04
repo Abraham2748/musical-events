@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ConcertsService } from '../shared/services/concerts-service';
 import { BuyDialog } from './buy-dialog/buy-dialog';
+import { VoucherDialog } from '../shared/components/voucher-dialog/voucher-dialog';
 
 @Component({
   selector: 'app-event-detail',
@@ -47,8 +48,20 @@ export class EventDetail implements OnInit {
       return;
     }
 
-    this.matDialog.open(BuyDialog, {
+    const buyDialogRef = this.matDialog.open(BuyDialog, {
       data: this.concert,
+    });
+
+    buyDialogRef.afterClosed().subscribe((res) => {
+      if (!res) return;
+
+      const voucherDialogRef = this.matDialog.open(VoucherDialog, {
+        data: res,
+      });
+
+      voucherDialogRef.afterClosed().subscribe(() => {
+        this.router.navigateByUrl('/');
+      });
     });
   }
 }
