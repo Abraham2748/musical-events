@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConcertsService } from '../shared/services/concerts-service';
 import { BuyDialog } from './buy-dialog/buy-dialog';
 import { VoucherDialog } from '../shared/components/voucher-dialog/voucher-dialog';
+import confetti from 'canvas-confetti';
 
 @Component({
   selector: 'app-event-detail',
@@ -52,11 +53,15 @@ export class EventDetail implements OnInit {
       data: this.concert,
     });
 
-    buyDialogRef.afterClosed().subscribe((res) => {
-      if (!res) return;
+    buyDialogRef.afterClosed().subscribe((saleId) => {
+      if (!saleId) return;
+
+      confetti({
+        zIndex: 1001,
+      });
 
       const voucherDialogRef = this.matDialog.open(VoucherDialog, {
-        data: res,
+        data: saleId,
       });
 
       voucherDialogRef.afterClosed().subscribe(() => {
