@@ -10,6 +10,7 @@ import { Genre } from '../shared/models/genre.model';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Highlightable } from '../shared/directives/highlightable';
 import { RouterLink } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-home',
