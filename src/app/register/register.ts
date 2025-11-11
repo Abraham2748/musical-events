@@ -9,6 +9,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { Router, RouterLink } from '@angular/router';
 import { Auth } from '../shared/services/auth';
 import { RegisterRequestBody } from '../shared/models/auth.model';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-register',
@@ -38,6 +39,8 @@ export class Register {
     documentNumber: new FormControl('', [Validators.required]),
   });
 
+  private notifications = inject(NotificationsService);
+
   register() {
     const body: RegisterRequestBody = {
       age: this.registerForm.controls.age.value!,
@@ -50,7 +53,7 @@ export class Register {
       lastName: this.registerForm.controls.lastName.value!,
     };
     this.authService.register(body).subscribe(() => {
-      alert('Registro exitoso');
+      this.notifications.success('Registro exitoso', 'Logueate para continuar');
       this.router.navigateByUrl('/login');
     });
   }

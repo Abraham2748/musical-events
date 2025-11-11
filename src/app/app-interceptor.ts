@@ -2,6 +2,7 @@ import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Auth } from './shared/services/auth';
 import { catchError, EMPTY } from 'rxjs';
+import { NotificationsService } from 'angular2-notifications';
 
 export const appInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req);
@@ -25,9 +26,10 @@ export const tokenExpiredInterceptor: HttpInterceptorFn = (req, next) => {
 };
 
 export const handleHttpErrorInterceptor: HttpInterceptorFn = (req, next) => {
+  const notifications = inject(NotificationsService);
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
-      alert('Error: ' + error.error.errorMessage);
+      notifications.error('Error', error.error.errorMessage);
       console.log('Http error: ', error.error.errorMessage);
       return EMPTY;
     })

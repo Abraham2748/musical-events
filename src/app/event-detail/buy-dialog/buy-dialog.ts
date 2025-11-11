@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Concert } from '../../shared/models/concert.model';
 import { ConcertsService } from '../../shared/services/concerts-service';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-buy-dialog',
@@ -17,10 +18,11 @@ export class BuyDialog {
   data = inject(MAT_DIALOG_DATA) as Concert;
   concertsService = inject(ConcertsService);
   matDialogRef = inject(MatDialogRef);
+  private notifications = inject(NotificationsService);
 
   buyTickets(quantity: number) {
     this.concertsService.buyTickets(this.data.id.toString(), quantity).subscribe((res) => {
-      alert('Compra exitosa');
+      this.notifications.success('Compra exitosa', 'Gracias por tu preferencia');
       this.matDialogRef.close(res.data);
     });
   }

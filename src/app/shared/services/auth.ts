@@ -7,6 +7,7 @@ import {
   ResetPasswordRequestBody,
 } from '../models/auth.model';
 import { jwtDecode } from 'jwt-decode';
+import { NotificationsService } from 'angular2-notifications';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +25,8 @@ export class Auth {
   private isLoggedIn = false;
 
   private router = inject(Router);
+
+  private notifications = inject(NotificationsService);
 
   getEmail() {
     return this.email;
@@ -91,10 +94,10 @@ export class Auth {
     this.isLoggedIn = false;
 
     if (tokenExpired) {
-      alert('Token expirado');
+      this.notifications.warn('Token expirado', 'Inicia sesión nuevamente');
       this.router.navigateByUrl('/login');
     } else {
-      alert('Logout exitoso');
+      this.notifications.success('Logout exitoso', 'Vuelve pronto');
       this.router.navigateByUrl('/');
     }
   }

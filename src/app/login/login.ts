@@ -7,6 +7,7 @@ import { Router, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { Auth } from '../shared/services/auth';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-login',
@@ -28,6 +29,7 @@ export class Login {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
   });
+  private notifications = inject(NotificationsService);
 
   router = inject(Router);
 
@@ -39,7 +41,7 @@ export class Login {
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('tokenExpiration', res.data.expirationDate);
       this.authService.decodeToken();
-      alert('Bienvenido: ' + this.authService.getName());
+      this.notifications.success('Bienvenido', this.authService.getName());
       this.router.navigateByUrl('/');
     });
   }

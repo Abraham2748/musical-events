@@ -11,6 +11,7 @@ import { ConcertsService } from '../shared/services/concerts-service';
 import { BuyDialog } from './buy-dialog/buy-dialog';
 import { VoucherDialog } from '../shared/components/voucher-dialog/voucher-dialog';
 import confetti from 'canvas-confetti';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-event-detail',
@@ -29,6 +30,7 @@ export class EventDetail implements OnInit {
 
   activatedRoute = inject(ActivatedRoute);
   concertsService = inject(ConcertsService);
+  private notifications = inject(NotificationsService);
 
   ngOnInit() {
     this.eventId = this.activatedRoute.snapshot.params['id'];
@@ -39,13 +41,13 @@ export class EventDetail implements OnInit {
 
   openBuyDialog() {
     if (!this.authService.getIsLoggedIn()) {
-      alert('Debes iniciar sesión para comprar');
+      this.notifications.error('Advertencia', 'Debes iniciar sesión para comprar');
       this.router.navigateByUrl('/login');
       return;
     }
 
     if (this.authService.getRole() === 'Administrator') {
-      alert('Los administradores no pueden comprar boletos');
+      this.notifications.error('Advertencia', 'Los administradores no pueden comprar boletos');
       return;
     }
 

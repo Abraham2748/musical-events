@@ -1,5 +1,6 @@
 import {
   ApplicationConfig,
+  importProvidersFrom,
   provideBrowserGlobalErrorListeners,
   provideZoneChangeDetection,
 } from '@angular/core';
@@ -12,6 +13,8 @@ import {
   jwtInterceptor,
   tokenExpiredInterceptor,
 } from './app-interceptor';
+import { SimpleNotificationsModule } from 'angular2-notifications';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,5 +24,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withInterceptors([tokenExpiredInterceptor, handleHttpErrorInterceptor, jwtInterceptor])
     ),
+    importProvidersFrom(SimpleNotificationsModule.forRoot()),
+    provideAnimationsAsync(),
   ],
 };
