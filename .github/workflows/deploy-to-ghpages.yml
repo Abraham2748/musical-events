@@ -1,0 +1,30 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar el código fuente
+        uses: actions/checkout@v5
+
+      - name: Configurar NodeJS
+        uses: actions/setup-node@v6
+        with:
+          node-version: '22.20.0'
+
+      - name: Instalar las dependencias
+        run: npm install
+
+      - name: Construir la aplicación
+        run: npm run build
+
+      - name: Desplegar con Github Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: dist/musical-events/browser/
+          token: ${{ secrets.PAT_VALUE }}
