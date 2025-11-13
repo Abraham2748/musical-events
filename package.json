@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build-ghpages": "ng build --deploy-url https://abraham2748.github.io/musical-events/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
