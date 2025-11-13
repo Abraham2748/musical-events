@@ -8,12 +8,13 @@ import {
 } from '../models/auth.model';
 import { jwtDecode } from 'jwt-decode';
 import { NotificationsService } from 'angular2-notifications';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Auth {
-  private baseUrl = 'http://localhost:8080/api/';
+  private baseUrl = environment.baseUrl;
   private http = inject(HttpClient);
 
   private tokenExpiration = new Date();
