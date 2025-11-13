@@ -30,6 +30,7 @@
           },
           "configurations": {
             "production": {
+              "outputPath": "dist/musical-events",
               "budgets": [
                 {
                   "type": "initial",
@@ -86,6 +87,15 @@
             ],
             "styles": ["src/styles.css"]
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "configurations": {
+            "production": {
+              "baseHref": "https://abraham2748.github.io/musical-events/"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
